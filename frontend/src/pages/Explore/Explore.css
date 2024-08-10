@@ -1,0 +1,38 @@
+.explore-header {
+    padding-left: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.377);
+}
+
+.explore-content {
+    /* background-color: rgba(209, 205, 205, 0.329); */
+    width:90%;
+    margin-left: 10px;
+    margin-top: 20px;
+    padding-left: 13px;
+    margin-bottom: 30px;
+}
+
+.explore-content h2 {
+    font-size: 25px;
+}
+
+.trend-news {
+    margin-top: 20px;
+}
+
+.trend-news .trending-place {
+    font-size: 14px;
+    color: grey;
+}
+
+.trend-news h4 {
+    font-size: 17px;
+
+}
+
+.trend-news .tweet-num {
+    font-size: 14px;
+    color: grey;
+}

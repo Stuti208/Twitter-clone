@@ -1,0 +1,95 @@
+.tweetBox {
+  border-bottom: 1px solid rgb(168, 167, 164);
+  width:100%;
+  padding-left: 15px;
+}
+
+.tweetBox-input {
+    display:flex;
+    gap:12px;
+    margin-top:17px;
+    padding-left: 4px;
+    width:100%;
+}
+
+.tweetBox-input input {
+    background-color: white;
+    border:none;
+    color:black;
+    font-size: 21px;
+    width:39vw;
+    word-wrap:break-all;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    /* white-space: initial; */
+    /* overflow-block: ;
+    overflow-y: visible; */
+    
+}
+
+
+.tweetBox-input input:focus{
+    outline:none;
+}
+
+.textbox::-webkit-input-placeholder {
+    font-size: 20px;
+}
+
+.textbox.typing {
+    border:none;
+}
+
+.imageIcon-tweetBtn {
+    display:flex;
+    /* gap:100px; */
+    width:95%;
+    padding-left: 60px;
+    align-items: center;
+    justify-content:space-between;
+    margin-top: 10px;
+}
+
+.TweetBox-btn {
+    /* margin-top: 8px;
+    margin-left: 5px; */
+    padding:8px 24px;
+    border-radius:30px;
+    color:white;
+    border:none;
+    background-color: rgb(56, 189, 241);
+    font-size: 18px;
+    margin-bottom: 10px;
+   
+}
+
+.TweetBox-btn:hover {
+    background-color: rgb(6, 166, 230);
+    border-color:rgb(6, 166, 230);
+    transition: 0.2s ease;
+}
+
+ .tweetBox hr {
+    width:100%;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.close-icon {
+    background-color: rgba(44, 43, 43, 0.493);
+    color:white;
+    border-radius: 50%;
+    padding: 3px;
+    /* position:absolute;
+    top:-375px;
+    right:30px;
+    z-index: 1;
+     */
+}
+
+.tweetbox-profileimage {
+    width:47px;
+    height:47px;
+    border-radius: 50%;
+    object-fit: cover;
+}

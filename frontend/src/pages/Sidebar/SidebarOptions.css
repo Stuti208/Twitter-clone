@@ -1,0 +1,23 @@
+.sidebarOptions {
+    display:flex;
+    align-content: space-between;
+    align-items: center;
+    gap:12px;
+    width: 195px;
+    padding:10px 17px;
+    border-radius: 23px;
+    /* color:black; */
+    margin:1.5px;
+    font-size: 18px;
+    
+}
+
+.sidebarOptions h3 {
+    font-weight: 510;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.sidebarOptions:hover {
+    background-color: rgb(231, 226, 226);
+    cursor:pointer;
+}

@@ -1,0 +1,22 @@
+.feed-page {
+    width:45vw;
+    height:100vh;
+    /* display:flex; */
+    /* align-items: center
+    justify-content: center; */
+    border-right: 1.5px solid rgb(202, 199, 199);
+    margin-left:0;
+    padding-top: 6px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.feed-page::-webkit-scrollbar {
+    display:none;
+}
+
+@media only screen and (max-width: 800px) {
+    .feed-pge {
+        width:100vw;
+    }
+}

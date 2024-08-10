@@ -1,0 +1,155 @@
+.mainpage-header {
+    display:flex;
+    /* align-items: center; */
+    gap:24px;
+    width:100%;
+    height:52px;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+.backgroundimage {
+    background-color: rgba(223, 217, 217, 0.452);
+    padding-bottom: 30px;
+}
+
+.header-info {
+    display: flex;
+    flex-direction: column;
+    gap:0px;
+}
+
+.header-info h2 {
+    font-size:18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.header-info p {
+    font-size:16px;
+    color:rgba(151, 143, 143, 0.822);
+    margin-top: 0px;
+    position: relative;
+    top:-6px;
+
+}
+
+.cover-image {
+    width:100%;
+    height:210px;
+    background-color: rgba(184, 179, 179, 0.63);
+
+}
+
+.profile-image {
+    width:163px;
+    height:163px;
+    border-radius:50%;
+    /* border:1px solid black; */
+    position:relative;
+    top:-75px;
+    left:22px;
+    padding:4px;
+    background-color: white;
+    /* z-index:1; */
+
+}
+
+.editProfile-btn {
+    float:right;
+    border:1px solid rgba(146, 142, 142, 0.767);
+    border-radius: 35px;
+    margin-top: 15px;
+    margin-right: 10px;
+    font-size: 15px;
+    padding:8px 22px;
+    background-color:rgba(231, 224, 224, 0.205);
+    /* background-color:black; */
+    color:black;
+    /* border-color: rgb(6, 166, 230); */
+    box-shadow:0px 0px 6px grey;
+}
+
+.profile-info {
+    margin-top: -62px;
+    margin-left: 20px;
+    
+}
+
+.profile-info h2 {
+    font-size:21px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.profile-info p {
+    font-size:14px;
+    color:rgba(49, 48, 48, 0.822);
+    margin-top: -6px;
+
+}
+
+.select-coverimage {
+    position: relative;
+    margin-left:565px;
+    top: -203px;
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.658);
+    padding: 7px;
+}
+
+.select-profileimage {
+    position: relative;
+    margin-left:111px;
+    top: -40px;
+    /* box-shadow:1px 1px 15px rgb(6, 166, 230); */
+    border-radius:50%;
+    width:80px;
+    height:80px;
+    background-color: rgba(0, 0, 0, 0.658);
+    padding: 2px;
+
+    /* border:1px solid black; */
+}
+
+.bio {
+    margin-left: 20px;
+    margin-top:9px;
+}
+
+.additional-info {
+    margin-left: 17px;
+    margin-top:8px;
+    display :flex;
+    gap:13px;
+    width:100%;
+}
+
+.location {
+    display :flex;
+    gap:2px;
+    color:rgba(49, 48, 48, 0.822);
+}
+
+.joiningDate {
+    display:flex;
+    gap:3px;
+    color:rgba(49, 48, 48, 0.822);
+}
+
+.posts {
+    margin-top: 59px;
+    padding-left: 7px;
+    padding-bottom: 4px;
+    width:100%;
+    font-size:15px;
+    border-bottom: 1px solid rgb(179, 175, 175);
+    margin-bottom: 7px;
+}
+
+.post-status {
+    margin-top: 70px;
+    margin-bottom: 90px;
+    text-align: center;
+}

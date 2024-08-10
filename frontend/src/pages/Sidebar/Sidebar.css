@@ -1,0 +1,94 @@
+.sidebar {
+    padding-left:44px;
+    border-right:1.5px solid rgb(202, 199, 199);
+    height:100vh;
+    width:23vw;
+    overflow-y: auto;
+   
+    /* margin-right: 0; */
+    
+}
+
+.sidebar::-webkit-scrollbar {
+    display:none;
+}
+
+.Twitter-icon {
+    margin-top: 7px;
+    margin-left: 18px;
+    color:rgb(56, 189, 241)
+}
+
+.Tweet-btn {
+    margin-top: 8px;
+    margin-left: 5px;
+    padding:9px 80px;
+    border-radius:30px;
+    color:white;
+    background-color: rgb(56, 189, 241);
+    font-size: 18px;
+   
+}
+
+.Tweet-btn:hover {
+    background-color: rgb(6, 166, 230);
+    border-color:rgb(6, 166, 230);
+    transition: 0.2s ease;
+}
+
+.Profile-info {
+    display:flex;
+    gap:14px;
+    /* position:absolute;
+    bottom:20px;
+    left:54px; */
+    margin-top:70px;
+    margin-left:15px;
+    margin-bottom: 20px;
+    
+    /* align-items: center; */
+}
+
+.user-info {
+    padding:0;
+}
+
+.user-info h5 {
+    font-weight: 500;
+    color:rgb(105, 103, 103);
+    /* position: absolute;
+    top:599px; */
+    position: relative;
+    bottom:7px;
+}
+
+.profile-more {
+    margin-left:9px;
+}
+
+.profile-more:visited {
+    border:none;
+}
+
+/* .basic-menu {
+    border-radius:45px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: black;
+} */
+
+.highlighted-link {
+    color:white;
+}
+
+.sidebar-profileimage {
+    width:44px;
+    height:44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 680px) {
+    .sidebar {
+        display:none;
+    }
+}

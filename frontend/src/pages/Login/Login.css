@@ -1,0 +1,154 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    color:black;
+}
+
+.login-container {
+    display:flex;
+    gap:0px;
+    width:100vw;
+    height: 94vh;
+    padding-top:1px;
+    
+}
+
+.image-container {
+    width:59vw;
+    height:94vh;
+    object-fit:cover;
+}
+
+.image-container img {
+    width:100%;
+    height:100%;
+}
+
+.form-container {
+    height:94vh;
+    width:41vw;
+    color:black;
+}
+
+.Twitter-icon {
+    color:rgb(81, 192, 236);
+    margin-left:32px;  
+    margin-top: 18px;
+}
+
+.heading-1 {
+    color:black;
+    font-size:65px;
+    margin-top: 12px;
+    margin-left: 35px;
+    
+} 
+
+.heading-2 {
+    color:black;
+    font-size:25px;
+    margin-top: 45px;
+    margin-left: 90px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.g-button {
+    border-radius:30px;
+    margin-left: 50px;
+}
+
+.or-class {
+    width:300px;
+    display:flex;
+    gap:0px;
+    margin-top: 13px;
+    margin-left: 70px;
+    align-items: center;
+    justify-content: center;
+}
+
+.or-class .div-1 {
+    border-bottom: 1px solid black;
+    width:80px;
+    height:1px;
+    margin: 19px;
+}
+
+.or-class p {
+    font-size:19px;
+}
+
+.or-class .div-2 {
+    border-bottom: 1px solid black;
+    width:80px;
+    height:1px;
+    margin: 19px;
+}
+
+.signup-btn {
+    margin-top: 10px;
+    margin-left: 65px;
+    padding:12px 45px;
+    border-radius:30px;
+    color:white;
+    background-color: rgba(9, 176, 241, 0.582);
+    font-size: 18px;
+}
+
+.signup-btn:hover {
+    background-color: rgb(6, 166, 230);
+    border-color:rgb(6, 166, 230);
+    transition: 0.2s ease;
+}
+
+.login-class {
+    margin-top: 30px;
+    margin-left: 90px;
+    font-size: 19px;
+}
+
+.form {
+    margin-top:15px;
+    margin-left: 70px;
+    padding:10px;
+}
+
+.form .form-option {
+    border:1px solid rgb(5, 172, 238);
+    padding:13px;
+    padding-right: 130px;
+    background-color: white;
+    margin:10px;
+    border-radius:8px;
+}
+
+.form-option::-webkit-input-placeholder {
+    font-size: 15px;
+}
+.login-btn .btn {
+    margin-top: 20px;
+    margin-left: 6px;
+    padding:10px 139px;
+    border-radius:30px;
+    color:white;
+    background-color: rgb(56, 189, 241);
+    font-size: 18px;
+}
+
+.login-btn .btn:hover {
+    background-color: rgb(6, 166, 230);
+    border-color:rgb(6, 166, 230);
+    transition: 0.2s ease;
+}
+
+.footer {
+    height:6vh;
+    width:100vw;
+    background-color: rgb(224, 223, 230);
+    margin-top: 0;
+}

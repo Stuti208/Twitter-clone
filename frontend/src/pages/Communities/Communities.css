@@ -1,0 +1,16 @@
+.communities-header {
+    padding-left: 10px;
+    padding-bottom: 16px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.377);
+}
+
+.notification-content {
+    margin-top: 35px;
+   
+}
+
+.notification-content h1 {
+    font-size: 34px;
+    padding-left: 140px;
+}

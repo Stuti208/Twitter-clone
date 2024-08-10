@@ -1,0 +1,23 @@
+.editpage-header {
+    display: flex;
+    align-items: center;
+}
+
+.editpage-heading {
+    margin-left:70px;
+    margin-top: 5px;
+}
+
+.editpage-savebtn {
+    border-radius: 20px;
+    padding: 7px 25px;
+    margin-left: 215px;
+    margin-top: 8px;
+    font-size: 17px;
+    background-color: rgba(19, 18, 18, 0.911);
+}
+
+.fill-content {
+    margin-top: 44px;
+}
+
