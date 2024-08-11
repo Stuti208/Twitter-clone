@@ -27,7 +27,7 @@ const EditProfile = () => {
 
   // const user = useAuthState(auth);
   // const [loggedInUser, setLoggedInUser] = useState({});
-  // const [tempName, setTempName] = useState(false);
+  
 
 
   const userValue=useContext(loggedInUserContext)
