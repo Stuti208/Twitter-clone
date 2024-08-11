@@ -27,7 +27,7 @@ const Feed = () => {
 
   useEffect(() => {
 
-    fetch('http://localhost:3000/post')
+    fetch('https://twitter-clone-0b2e.onrender.com/post')
       .then(res => res.json())
       .then(async (data) => {
          setPosts(data);

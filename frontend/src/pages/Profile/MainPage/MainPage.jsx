@@ -40,7 +40,7 @@ const MainPage = () => {
     if (user) {
         const email = user[0].email;
 
-        fetch(`http://localhost:3000/loggedInUser?email=${email}`)
+        fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
          .then(res => res.json())
          .then(data => {
                 setLoggedInUser(data[0]);
@@ -51,7 +51,7 @@ const MainPage = () => {
 
   useEffect(() => {
 
-    fetch(`http://localhost:3000/userPost?email=${loggedInUser.email}`)
+    fetch(`https://twitter-clone-0b2e.onrender.com/userPost?email=${loggedInUser.email}`)
       .then(res => res.json())
       .then(async (data) => {
          setUserPosts(data);
@@ -82,7 +82,7 @@ const MainPage = () => {
           coverImage:url
        }
    
-       axios.patch(`http://localhost:3000/userUpdates/${loggedInUser.email}`, userCoverImage)
+       axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userCoverImage)
           .then(res => console.log(res))
         
         setCoverImage(url);
@@ -109,13 +109,13 @@ const MainPage = () => {
         }
         
         // userdata update
-        axios.patch(`http://localhost:3000/userUpdates/${loggedInUser.email}`, userProfileImage)
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userProfileImage)
           .then(res => console.log(res))
         
         value.setProfileImage(url);
 
         // postdata update
-        axios.patch(`http://localhost:3000/postUpdates/${loggedInUser._id}`, userProfileImage)
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/postUpdates/${loggedInUser._id}`, userProfileImage)
           .then(res => console.log(res))
       })
   }

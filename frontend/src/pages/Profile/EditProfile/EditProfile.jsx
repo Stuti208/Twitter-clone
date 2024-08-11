@@ -112,7 +112,7 @@ const EditProfile = () => {
       dob:dob
     }
     
-    axios.patch(`http://localhost:3000/userUpdates/${loggedInUser.email}`, userProfile)
+    axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userProfile)
       .then(res => console.log(res))
     
     setOpen(false);
@@ -124,7 +124,7 @@ const EditProfile = () => {
 
     console.log(loggedInUser.name)
 
-    axios.patch(`http://localhost:3000/postUpdates/${loggedInUser._id}`, userName)
+    axios.patch(`https://twitter-clone-0b2e.onrender.com/postUpdates/${loggedInUser._id}`, userName)
       .then(res => console.log(res))
     
     postValue.changePostStatus();

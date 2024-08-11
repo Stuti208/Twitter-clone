@@ -38,7 +38,7 @@ const UserPost = ({post,setPosts}) => {
   //   if (user) {
   //       const email = user[0].email;
 
-  //       fetch(`http://localhost:3000/loggedInUser?email=${email}`)
+  //       fetch(`http:/loggedInUser?email=${email}`)
   //        .then(res => res.json())
   //        .then(data => {
   //               setLoggedInUser(data[0]);
@@ -66,7 +66,7 @@ const UserPost = ({post,setPosts}) => {
   }
   
   const handleDeletePost = async () => {
-    const res = await axios.delete(`http://localhost:3000/deletepost/${post._id}`)
+    const res = await axios.delete(`https://twitter-clone-0b2e.onrender.com/deletepost/${post._id}`)
     console.log(res);
     postValue.changePostStatus();
   }
@@ -87,7 +87,7 @@ const UserPost = ({post,setPosts}) => {
 
     console.log(bookmark.bookmark)
 
-    axios.patch(`http://localhost:3000/uniquePostUpdate/${post._id}`, bookmark)
+    axios.patch(`https://twitter-clone-0b2e.onrender.com/uniquePostUpdate/${post._id}`, bookmark)
       .then(res => console.log(res))
     
     bookmarkValue.toggleBookmarkStatus();
@@ -111,7 +111,7 @@ const UserPost = ({post,setPosts}) => {
 
     // console.log(bookmark.bookmark)
 
-    axios.patch(`http://localhost:3000/uniquePostUpdate/${post._id}`, like)
+    axios.patch(`https://twitter-clone-0b2e.onrender.com/uniquePostUpdate/${post._id}`, like)
       .then(res => console.log(res))
     
       likeValue.toggleLikeStatus();

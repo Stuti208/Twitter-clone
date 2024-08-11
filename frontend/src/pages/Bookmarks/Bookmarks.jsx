@@ -19,7 +19,7 @@ const Bookmarks = () => {
     
     const bookmark = true;
 
-    fetch(`http://localhost:3000/bookmarkUserPost?bookmark=${bookmark}`)
+    fetch(`https://twitter-clone-0b2e.onrender.com/bookmarkUserPost?bookmark=${bookmark}`)
       .then(res => res.json())
       .then(async (data) => {
          setUserPosts(data);

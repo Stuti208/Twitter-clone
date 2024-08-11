@@ -75,7 +75,7 @@ const Tweet_box = () => {
     
     try {
     
-      const res = await axios.post('http://localhost:3000/post', userPost);
+      const res = await axios.post('https://twitter-clone-0b2e.onrender.com/post', userPost);
       console.log(res);
       postValue.changePostStatus();
      

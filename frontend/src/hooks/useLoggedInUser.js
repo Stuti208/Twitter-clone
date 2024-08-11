@@ -18,7 +18,7 @@ const useLoggedInUser = () => {
         if (user) {
             const email = user[0].email;
 
-            fetch(`http://localhost:3000/loggedInUser?email=${email}`)
+            fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
              .then(res => res.json())
              .then(data => {
                  userValue.setLoggedInUser(data[0]);

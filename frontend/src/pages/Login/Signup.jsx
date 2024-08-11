@@ -52,7 +52,7 @@ const Signup = () => {
         password: password
       }
 
-      const { data } =await axios.post('http://localhost:3000/userdata', userData)
+      const { data } =await axios.post('https://twitter-clone-0b2e.onrender.com/userdata', userData)
       console.log(data)
       
       navigate('/login');

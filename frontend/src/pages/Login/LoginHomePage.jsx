@@ -28,7 +28,7 @@ const LoginHomePage = () => {
     };
 
     const { data } = await axios.post(
-      'http://localhost:3000/userdata',
+      'https://twitter-clone-0b2e.onrender.com/userdata',
       userData
     );
     console.log(data);

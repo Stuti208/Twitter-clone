@@ -40,7 +40,7 @@ const Login = () => {
     console.log(password);
     signInWithEmailAndPassword(email, password);
     
-    const res = await axios.get("http://localhost:3000/loggedInUser", {
+    const res = await axios.get("https://twitter-clone-0b2e.onrender.com/loggedInUser", {
       params:{email:email}
     })
     console.log(res)
