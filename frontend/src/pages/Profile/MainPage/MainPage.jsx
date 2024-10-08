@@ -11,22 +11,28 @@ import auth from '../../../firebase.init.js';
 import AddIcon from '@mui/icons-material/Add';import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import UserPost from '../../Feed/UserPost/UserPost.jsx'
-import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext} from '../../../Context/Context';
+import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext} from '../../../Context/Context';
 import EditProfile from '../EditProfile/EditProfile';
+import Form from 'react-bootstrap/Form';
 
 const MainPage = () => {
   
   const [userPosts, setUserPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
   const [coverImage, setCoverImage] = useState();
+  // const [notificationsEnabled, setNotificationsEnabled] = useState(
+  //   JSON.parse(localStorage.getItem('notificationsEnabled')) || false);
+
   // const [profileImage, setProfileImage] = useState();
 
   const value = useContext(profileImageContext);
   const postValue = useContext(postStatusContext);
   const bookmarkValue = useContext(bookmarkStatusContext);
   const likeValue = useContext(likeStatusContext);
+  const notificationStatus = useContext(notificationsEnabledContext);
 
-
+  // const notificationsEnabled = notificationStatus.notificationsEnabled;
+  // const setNotificationsEnabled = notificationStatus.setNotificationsEnabled;
   const navigate = useNavigate();
 
   const user = useAuthState(auth);
@@ -66,6 +72,29 @@ const MainPage = () => {
   //   else
   //   setPostStatus(true)
   // }
+
+
+  const requestNotificationPermission = () => {
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                console.log('Notification permission granted.');
+            } else {
+                console.log('Notification permission denied.');
+            }
+        });
+    }
+}
+
+  const toggleNotifications = () => {
+    notificationStatus.setNotificationsEnabled(!notificationStatus.notificationsEnabled);
+    localStorage.setItem('notificationsEnabled', !notificationStatus.notificationsEnabled);
+
+    if (!notificationStatus.notificationsEnabled) {
+        requestNotificationPermission(); // Request permission if enabling
+    }
+};
+
 
   const handleUploadCoverImage = (e) => {
     const image = e.target.files[0];
@@ -133,11 +162,25 @@ const MainPage = () => {
           <ArrowBackIcon />
         </IconButton>
 
-        <div className="header-info">
-          <h2>{loggedInUser.name}</h2>
-          <p>{ userPosts.length} posts</p>
-        </div>
-       
+      <div className="header-container">
+          <div className="header-info">
+            <h2>{loggedInUser.name}</h2>
+            <p>{ userPosts.length} posts</p>
+          </div>
+   
+          
+          <label>
+            <input style={{scale:'1.4',marginRight:'10px'}}
+                type="checkbox"
+                checked={notificationStatus.notificationsEnabled}
+                onChange={toggleNotifications}
+            />
+            Enable Notifications
+              </label>  
+        
+
+      </div>
+            
       </div>
       
       <div className="cover-image">

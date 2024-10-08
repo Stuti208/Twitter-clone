@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Sidebar from './Sidebar/Sidebar'
 import Feed from './Feed/Feed'
 import Widgets from './Widgets/Widgets'
@@ -8,7 +8,7 @@ import auth from '../firebase.init';
 import { signOut } from 'firebase/auth'
 import { Outlet } from 'react-router-dom';
 import useLoggedInUser from '../hooks/useLoggedInUser'
-import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext} from '../Context/Context';
+import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext,notificationsEnabledContext} from '../Context/Context';
 
 
 const Home = () => {
@@ -23,8 +23,27 @@ const Home = () => {
   const [postStatus, setPostStatus] = useState(false);
   const [bookmarkStatus, setBookmarkStatus] = useState(false);
   const [likeStatus, setLikeStatus] = useState(false);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(
+    JSON.parse(localStorage.getItem('notificationsEnabled')) || false);
+
   
   // console.log(loggedInUser);
+
+  useEffect(() => {
+    if ('Notification' in window) {
+      Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+              console.log('Notification permission granted.');
+          } else {
+              console.log('Notification permission denied.');
+          }
+      });
+    }
+    
+    else {
+      console.log('This browser does not support notifications.');
+  }
+  },[])
 
   const handleLogOut = () => {
     signOut(auth);
@@ -61,6 +80,7 @@ const Home = () => {
 
   return (
     <>
+      <notificationsEnabledContext.Provider value={{ notificationsEnabled, setNotificationsEnabled }}>
       <loggedInUserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       <editStatusContext.Provider value={{editStatus,setEditStatus,toggleEditStatus}}>
       <postStatusContext.Provider value={{postStatus,setPostStatus,changePostStatus}}>
@@ -80,7 +100,7 @@ const Home = () => {
       </postStatusContext.Provider>
       </editStatusContext.Provider>
       </loggedInUserContext.Provider>
-
+      </notificationsEnabledContext.Provider>
     </>
   )
 }

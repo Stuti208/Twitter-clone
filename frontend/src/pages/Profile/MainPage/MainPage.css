@@ -13,6 +13,19 @@
     padding-bottom: 30px;
 }
 
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    gap:290px;
+}
+
+.header-container label {
+    /* display: flex; */
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
 .header-info {
     display: flex;
     flex-direction: column;

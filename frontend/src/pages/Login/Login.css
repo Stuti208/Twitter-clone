@@ -152,3 +152,34 @@ body {
     background-color: rgb(224, 223, 230);
     margin-top: 0;
 }
+
+.show-password {
+    position: relative;
+    /* top:0px; */
+    left:-50px;
+}
+
+.show-password:hover {
+    border:none;
+    outline: none;
+}
+
+.forgot-pass-btn {
+   color:rgb(6, 166, 230);
+   margin-left: 200px;
+   margin-top: -4px;
+}
+
+.pass-gen {
+    border: none;
+    background: none;
+    color:rgb(15, 132, 228);
+    position: relative;
+    left:125px;
+    font-size: 15px;
+}
+
+.pass-gen:hover {
+    color:rgb(10, 75, 128);
+
+}

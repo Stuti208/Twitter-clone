@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import './Widgets.css'
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import { TwitterTimelineEmbed,TwitterTweetEmbed } from 'react-twitter-embed';
 
 const Widgets = () => {
 
@@ -26,7 +26,7 @@ const Widgets = () => {
           <h2>What's happening</h2>
       </div>
 
-      <div className="widgets-content">
+      {/* <div className="widgets-content">
          <TwitterTweetEmbed
            tweetId={'1557187138352861186'}
          />
@@ -35,7 +35,7 @@ const Widgets = () => {
           sourceType="profile"
           screenName="elonmusk"
           options={{height: 400}}
-        />
+        /> */}
 {/* 
         <TwitterTimelineEmbed
           sourceType="profile"
@@ -44,7 +44,7 @@ const Widgets = () => {
         /> */}
 
 
-      </div>
+      {/* </div> */}
 
     </div>
   )

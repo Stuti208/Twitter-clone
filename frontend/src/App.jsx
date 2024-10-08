@@ -5,6 +5,7 @@ import LoginHomePage from './pages/Login/LoginHomePage.jsx';
 import Home from './pages/Home.jsx'
 import ProtectedRoute from './pages/ProtectedRoute.jsx';
 import PageLoading from './pages/PageLoading.jsx';
+import Video from './pages/Video.jsx';
 
 import {
   createBrowserRouter,
@@ -19,6 +20,8 @@ import Bookmarks from './pages/Bookmarks/Bookmarks.jsx';
 import Communities from './pages/Communities/Communities.jsx';
 import Profile from './pages/Profile/Profile.jsx';
 import More from './pages/More/More.jsx';
+import ForgetPassword from './pages/Login/ForgetPassword.jsx';
+import SetPassword from './pages/Login/SetPassword.jsx';
 
 
 function App() {
@@ -39,6 +42,22 @@ function App() {
       path: "/signup",
       element: <Signup/>
     },
+
+    {
+      path: "/password-reset",
+      element: <ForgetPassword/>
+    },
+
+    {
+      path: "/password-set",
+      element: <SetPassword/>
+    },
+
+    {
+      path: "/video",
+      element: <Video/>
+    },
+
 
     {
       path: "/home",

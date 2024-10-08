@@ -9,7 +9,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import { profileImageContext,loggedInUserContext,postStatusContext, bookmarkStatusContext, likeStatusContext } from '../../../Context/Context';
+import { profileImageContext,loggedInUserContext,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext } from '../../../Context/Context';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import useLoggedInUser from '../../../hooks/useLoggedInUser';
@@ -29,12 +29,15 @@ const UserPost = ({post,setPosts}) => {
   const postValue = useContext(postStatusContext);
   const bookmarkValue = useContext(bookmarkStatusContext);
   const likeValue = useContext(likeStatusContext);
+  
+
+  
   // const [bookmarkStatus, setBookmarkStatus] = useState(post.bookmark?post.bookmark:false);
 
 
 
   // useEffect(() => {
-
+  
   //   if (user) {
   //       const email = user[0].email;
 
@@ -55,6 +58,8 @@ const UserPost = ({post,setPosts}) => {
   //   console.log(bookmarkStatus);
 
   // }
+
+ 
 
     
   const handleClick = (e) => {

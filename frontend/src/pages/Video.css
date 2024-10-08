@@ -1,0 +1,20 @@
+/* body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: grid;
+    min-height: 100vh;
+    place-content: center;
+    background: linear-gradient(rgb(96, 29, 222), rgb(44, 9, 142));
+ }
+    
+ .video-js {
+    width: 700px;
+    height: auto;
+    aspect-ratio: 16/9;
+    display: block;
+    margin: 0 auto;   
+    }
+    
+     */

@@ -1,7 +1,9 @@
-const express = require('express')
+import express from 'express'
+import cors from 'cors'
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
+
 const app = express()
-const cors = require('cors');
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+// const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = 3000
 
 app.use(cors());
@@ -99,6 +101,16 @@ async function run() {
       res.send(result);
 
     })
+
+    // app.patch('/userUpdates/:email', async (req, res) => {
+    //   const filter = req.params;
+    //   const profile = req.body;
+    //   const updateDoc = { $set:  {"createdAt":  {$toDate : "$createdAt"} };
+    //   const options = { upsert: true };
+    //   const result = await userCollections.updateOne(filter, updateDoc, options);
+    //   res.send(result);
+
+    // })
 
     app.patch('/postUpdates/:userid', async (req, res) => {
       const filter = req.params;
