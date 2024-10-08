@@ -125,7 +125,7 @@ const Signup = () => {
             required></input>
                        
           <input type="email"
-            className='email form-option'
+            className='form-option'
             placeholder='Email'
             onChange={(e) => { setEmail(e.target.value) }}
               style={{ color: 'black' }}

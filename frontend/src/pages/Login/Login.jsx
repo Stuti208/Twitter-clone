@@ -16,7 +16,7 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passType,setPassType]=useState('password')
+  const [passType, setPassType] = useState('password');
 
   const [
     signInWithEmailAndPassword,
@@ -76,7 +76,7 @@ const Login = () => {
         <form className='form' onSubmit={handleSubmit}>
 
           <input type="email"
-            className='email form-option'
+            className='form-option'
             placeholder='Email'
             onChange={(e) => { setEmail(e.target.value) }}
             style={{ color: 'black' }}
