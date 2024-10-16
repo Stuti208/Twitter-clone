@@ -1,8 +1,10 @@
-import express from 'express'
-import cors from 'cors'
-import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
-
+// import express from 'express'
+// import cors from 'cors'
+// import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
+const express = require('express');
 const app = express()
+const cors = require('cors');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 // const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const port = 3000
 
