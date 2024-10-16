@@ -8,4 +8,5 @@ export const bookmarkStatusContext=createContext(false);
 export const likeStatusContext = createContext(false);
 export const notificationsEnabledContext = createContext(false);
 export const profileContext = createContext('');
+export const followContext = createContext('');
 

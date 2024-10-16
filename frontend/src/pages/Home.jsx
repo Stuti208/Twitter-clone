@@ -8,7 +8,7 @@ import auth from '../firebase.init';
 import { signOut } from 'firebase/auth'
 import { Outlet } from 'react-router-dom';
 import useLoggedInUser from '../hooks/useLoggedInUser'
-import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext,notificationsEnabledContext,profileContext} from '../Context/Context';
+import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext,notificationsEnabledContext,profileContext,followContext } from '../Context/Context';
 
 
 const Home = () => {
@@ -24,6 +24,7 @@ const Home = () => {
   const [postStatus, setPostStatus] = useState(false);
   const [bookmarkStatus, setBookmarkStatus] = useState(false);
   const [likeStatus, setLikeStatus] = useState(false);
+  const [follow, setFollow] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(
     JSON.parse(localStorage.getItem('notificationsEnabled')) || false);
 
@@ -82,6 +83,7 @@ const Home = () => {
   return (
     <>
       {/* <profileContext.Provider value={{ profile, setProfile }}> */}
+      <followContext.Provider value={{follow,setFollow}}>
       <notificationsEnabledContext.Provider value={{ notificationsEnabled, setNotificationsEnabled }}>
       <loggedInUserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       <editStatusContext.Provider value={{editStatus,setEditStatus,toggleEditStatus}}>
@@ -103,6 +105,7 @@ const Home = () => {
       </editStatusContext.Provider>
       </loggedInUserContext.Provider>
         </notificationsEnabledContext.Provider>
+        </followContext.Provider>
         {/* </profileContext.Provider> */}
 
     </>

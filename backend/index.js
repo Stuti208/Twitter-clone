@@ -47,6 +47,12 @@ async function run() {
       res.send(user);
     })
 
+    app.get('/loggedInUserFriends', async (req, res) => {
+      const email = req.query.email;
+      const friends = await friendCollections.findOne({ email: email }).toArray();
+      res.send(friends);
+    })
+
     app.get('/userPost', async (req, res) => {
       const email = req.query.email;
       const userPost = await postCollections.find({ email: email }).toArray();
@@ -131,12 +137,21 @@ async function run() {
 
     })
 
-    app.patch('/friendUpdates/:userid', async (req, res) => {
+    app.patch('/addfriendUpdates/:userid', async (req, res) => {
       const filter = req.params;
       const profile = req.body;
-      const updateDoc = { $set: profile };
+      const updateDoc = { $addToSet: profile };
       const options = { upsert: true };
       const result = await friendCollections.updateOne(filter, updateDoc, options);
+      res.send(result);
+
+    })
+
+    app.patch('/deletefriendUpdates/:userid', async (req, res) => {
+      const filter = req.params;
+      const profile = req.body;
+      const updateDoc = { $pull: profile };
+      const result = await friendCollections.updateOne(filter, updateDoc);
       res.send(result);
 
     })

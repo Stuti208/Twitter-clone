@@ -11,7 +11,7 @@ import auth from '../../../firebase.init.js';
 import AddIcon from '@mui/icons-material/Add';import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import UserPost from '../../Feed/UserPost/UserPost.jsx'
-import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext} from '../../../Context/Context';
+import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext, followContext} from '../../../Context/Context';
 import EditProfile from '../EditProfile/EditProfile';
 import Form from 'react-bootstrap/Form';
 // import axios from 'axios'
@@ -23,6 +23,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   // const [postStatus, setPostStatus] = useState(false);
   const [coverImage, setCoverImage] = useState();
   const [userData, setUserData] = useState();
+  const [friends, setFriends] = useState();
   
 
   // const [notificationsEnabled, setNotificationsEnabled] = useState(
@@ -35,6 +36,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   const bookmarkValue = useContext(bookmarkStatusContext);
   const likeValue = useContext(likeStatusContext);
   const notificationStatus = useContext(notificationsEnabledContext);
+  const followStatus = useContext(followContext);
 
   // const notificationsEnabled = notificationStatus.notificationsEnabled;
   // const setNotificationsEnabled = notificationStatus.setNotificationsEnabled;
@@ -70,6 +72,23 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
       })
     
   }, [postValue.postStatus,bookmarkValue.bookmarkStatus,likeValue.likeStatus,loggedInUser]);
+
+
+  useEffect(() => {
+        const email = user[0].email;
+
+        fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
+         .then(res => res.json())
+         .then(data => {
+           setFriends(data[0]);
+           
+           if (friends.following.includes(loggedInUser._id))
+             followStatus.setFollow('true')
+           else
+             followStatus.setFollow('false')
+          })
+    
+  }, [loggedInUser]);
 
   // const changePostStatus = () => {
   //   if (postStatus)
@@ -167,30 +186,59 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   }
 
   const handleFollow = () => {
+
+    if(followStatus.follow == 'true')
+      followStatus.setFollow('false')
+    else 
+      followStatus.setFollow('true')
+
     const email = user[0].email;
 
     fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
       .then(res => res.json())
       .then(data => {
-          setUserData(data[0]);
-          console.log(data[0])
+        setUserData(data[0]);
+        console.log(data[0])
       })
+
     
-    
+    if (followStatus.follow == 'true') {
+          
+          const user1Profile = {
+            following: [loggedInUser._id]
+          }
+          
+          axios.patch(`https://twitter-clone-0b2e.onrender.com/addfriendUpdates/${userData._id}`, user1Profile)
+            .then(res => console.log(res))
+        
+        
+          const user2Profile = {
+            followers: [userData._id]
+          }
+          
+          axios.patch(`https://twitter-clone-0b2e.onrender.com/addfriendUpdates/${loggedInUser._id}`, user2Profile)
+            .then(res => console.log(res))
+    }
+
+    else {
+
       const user1Profile = {
-        following:[loggedInUser._id]
+        following: [loggedInUser._id]
       }
       
-      axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
-      .then(res => console.log(res))
+      axios.patch(`https://twitter-clone-0b2e.onrender.com/deletefriendUpdates/${userData._id}`, user1Profile)
+        .then(res => console.log(res))
     
     
       const user2Profile = {
-        followers:[userData._id]
+        followers: [userData._id]
       }
       
-      axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user1Profile)
+      axios.patch(`https://twitter-clone-0b2e.onrender.com/deletefriendUpdates/${loggedInUser._id}`, user2Profile)
         .then(res => console.log(res))
+    }
+
+
   }
 
 
@@ -261,7 +309,9 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
 
       { user && user[0].email === loggedInUser.email?
             <EditProfile loggedInUser={loggedInUser} /> :
-            <input type='button' value='Follow' className="editProfile-btn fbtn"
+            <input type='button'
+              value={followStatus.follow == 'false' ? 'Follow' : 'Following'}
+              className={followStatus.follow=='false'? `editProfile-btn fbtn`:`editProfile-btn`}
               onClick={handleFollow}></input>
       }
 
