@@ -14,12 +14,17 @@ import UserPost from '../../Feed/UserPost/UserPost.jsx'
 import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext} from '../../../Context/Context';
 import EditProfile from '../EditProfile/EditProfile';
 import Form from 'react-bootstrap/Form';
+// import axios from 'axios'
 
-const MainPage = () => {
+
+const MainPage = ({loggedInUser,setLoggedInUser}) => {
   
   const [userPosts, setUserPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
   const [coverImage, setCoverImage] = useState();
+  const [userData, setUserData] = useState();
+  
+
   // const [notificationsEnabled, setNotificationsEnabled] = useState(
   //   JSON.parse(localStorage.getItem('notificationsEnabled')) || false);
 
@@ -36,14 +41,14 @@ const MainPage = () => {
   const navigate = useNavigate();
 
   const user = useAuthState(auth);
-  const [loggedInUser, setLoggedInUser] = useLoggedInUser({});
+  // const [loggedInUser, setLoggedInUser] = useLoggedInUser({});
 
   // const userValue=useContext(loggedInUserContext)
   // const loggedInUser = userValue.loggedInUser;
 
   useEffect(() => {
 
-    if (user) {
+    if (user && user[0].email===loggedInUser.email) {
         const email = user[0].email;
 
         fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
@@ -149,18 +154,60 @@ const MainPage = () => {
       })
   }
 
+  const handleBack = () => {
+      const email = user[0].email;
+
+      fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            setLoggedInUser(data[0]);
+            console.log(data[0])
+        })
+    navigate('/home')
+  }
+
+  const handleFollow = () => {
+    const email = user[0].email;
+
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+      .then(res => res.json())
+      .then(data => {
+          setUserData(data[0]);
+          console.log(data[0])
+      })
+    
+    
+      const user1Profile = {
+        following:[loggedInUser._id]
+      }
+      
+      axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
+      .then(res => console.log(res))
+    
+    
+      const user2Profile = {
+        followers:[userData._id]
+      }
+      
+      axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user1Profile)
+        .then(res => console.log(res))
+  }
+
 
   return (
     <>
       
       <div>
        <div className="backgroundimage">
-        <div className="mainpage-header">
-        <IconButton
-          style={{ position: 'relative', top: '-3px' }}
-          onClick={()=>navigate('/home')}>
-          <ArrowBackIcon />
-        </IconButton>
+          <div className="mainpage-header">
+           
+            <IconButton
+              style={{ position: 'relative', top: '-3px' }}
+              onClick={handleBack}>
+                <ArrowBackIcon />
+            </IconButton>
+                
+            
 
       <div className="header-container">
           <div className="header-info">
@@ -168,16 +215,19 @@ const MainPage = () => {
             <p>{ userPosts.length} posts</p>
           </div>
    
-          
-          <label>
-            <input style={{scale:'1.4',marginRight:'10px'}}
-                type="checkbox"
-                checked={notificationStatus.notificationsEnabled}
-                onChange={toggleNotifications}
-            />
-            Enable Notifications
-              </label>  
-        
+              {
+                user && user[0].email === loggedInUser.email &&
+                  (
+                    <label>
+                      <input style={{ scale: '1.4', marginRight: '10px' }}
+                        type="checkbox"
+                        checked={notificationStatus.notificationsEnabled}
+                        onChange={toggleNotifications}
+                      />
+                      Enable Notifications
+                  </label>
+                  )
+              }
 
       </div>
             
@@ -190,18 +240,30 @@ const MainPage = () => {
                   style={{ width: "100%", height: '100%', objectFit: 'cover' }}/>:
               <img src={coverIcon} style={{ width: "100%", height: '100%', objectFit: 'cover' }} />
           }
-        <label htmlFor='coverimage' className='select-coverimage'>
-          <EditIcon style={ {scale:'1.2',color:'white',paddingTop:'5px'}} />
-        </label>
-        <input
-          type='file'
-          id='coverimage'
-          style={{ display: 'none' }}
-          onChange={handleUploadCoverImage}></input>
+            
+            {
+              user && user[0].email === loggedInUser.email &&
+              (
+                <label htmlFor='coverimage' className='select-coverimage'>
+                  <EditIcon style={{ scale: '1.2', color: 'white', paddingTop: '5px' }} />
+                </label>
+              )
+            }
+
+            <input
+              type='file'
+              id='coverimage'
+              style={{ display: 'none' }}
+              onChange={handleUploadCoverImage}></input>
+              
+          
       </div>
 
-
-      <EditProfile loggedInUser={loggedInUser} />
+      { user && user[0].email === loggedInUser.email?
+            <EditProfile loggedInUser={loggedInUser} /> :
+            <input type='button' value='Follow' className="editProfile-btn fbtn"
+              onClick={handleFollow}></input>
+      }
 
       <div className="profile-image">
         {  loggedInUser.profileImage?
@@ -211,13 +273,19 @@ const MainPage = () => {
               <Avatar style={{scale:'3.85',marginLeft:'58px',marginTop:'57px'}}/>
         }
 
-            <label htmlFor='profileimage' className='select-profileimage'
-              style={{
-                marginLeft: loggedInUser.profileImage ? '111px' : '120px',
-                top:loggedInUser.profileImage?'-38px':'15px'}}>
-                 <AddIcon
-                    style={{scale: '1.4', color: 'white', paddingTop: '8px'}} />
-        </label>
+            {
+              user && user[0].email === loggedInUser.email &&
+              (
+                  <label htmlFor='profileimage' className='select-profileimage'
+                    style={{
+                      marginLeft: loggedInUser.profileImage ? '111px' : '120px',
+                      top: loggedInUser.profileImage ? '-38px' : '15px'
+                    }}>
+                    <AddIcon
+                      style={{ scale: '1.4', color: 'white', paddingTop: '8px' }} />
+                    </label>
+              )
+            }
 
         <input
           type='file'

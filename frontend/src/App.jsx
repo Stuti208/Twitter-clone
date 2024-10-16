@@ -22,10 +22,14 @@ import Profile from './pages/Profile/Profile.jsx';
 import More from './pages/More/More.jsx';
 import ForgetPassword from './pages/Login/ForgetPassword.jsx';
 import SetPassword from './pages/Login/SetPassword.jsx';
+// import OthersProfile from './pages/Widgets/OthersProfile.jsx';
+import {profileContext} from './Context/Context';
+
 
 
 function App() {
   // const [count, setCount] = useState(0)
+  const [profile, setProfile] = useState('');
 
   const router = createBrowserRouter([
     {
@@ -59,6 +63,7 @@ function App() {
     },
 
 
+
     {
       path: "/home",
       element: <ProtectedRoute><Home /></ProtectedRoute>,
@@ -71,7 +76,7 @@ function App() {
         { path: 'messages', element: <Messages /> },       
         { path: 'bookmark', element: <Bookmarks /> },    
         { path: 'communities', element: <Communities /> },   
-        { path: 'profile', element: <Profile /> },       
+        { path: 'profile', element: <Profile /> },            
         { path: 'more', element:<More/> },
       ],
     },
@@ -84,7 +89,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <profileContext.Provider value={{ profile, setProfile }}>
+       <RouterProvider router={router} />
+      </profileContext.Provider>
     </>
   )
 }

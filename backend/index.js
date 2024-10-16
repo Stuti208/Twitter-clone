@@ -27,6 +27,7 @@ async function run() {
     await client.connect();
     const postCollections = client.db("database").collection('posts');
     const userCollections = client.db("database").collection('users');
+    const friendCollections = client.db("database").collection('friends');
 
     app.get('/post', async (req,res) => {
       const post = await postCollections.find().toArray();
@@ -92,6 +93,12 @@ async function run() {
       res.send(result);
     })
 
+    app.post('/friendsdata', async (req, res) => {
+      const friendsdata = req.body;
+      const result = await friendCollections.insertOne(friendsdata);
+      res.send(result);
+    })
+
     app.patch('/userUpdates/:email', async (req, res) => {
       const filter = req.params;
       const profile = req.body;
@@ -121,6 +128,17 @@ async function run() {
       res.send(result);
 
     })
+
+    app.patch('/friendUpdates/:userid', async (req, res) => {
+      const filter = req.params;
+      const profile = req.body;
+      const updateDoc = { $set: profile };
+      const options = { upsert: true };
+      const result = await friendCollections.updateOne(filter, updateDoc, options);
+      res.send(result);
+
+    })
+
 
     app.patch('/uniquePostUpdate/:postid', async (req, res) => {
       const postid = req.params.postid;

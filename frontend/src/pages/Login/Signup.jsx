@@ -85,8 +85,27 @@ const Signup = () => {
         password: password
       }
 
-      const { data } =await axios.post('https://twitter-clone-0b2e.onrender.com/userdata', userData)
-      console.log(data)
+      const { res } =await axios.post('https://twitter-clone-0b2e.onrender.com/userdata', userData)
+      console.log(res)
+
+
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+      .then(res => res.json())
+      .then(async (data) => {
+          console.log(data[0])
+        
+          const friendsData = {
+              userid: data[0]._id,
+              email: email,
+              followers: [],
+              following:[],
+          }
+        
+          const { r } =await axios.post('https://twitter-clone-0b2e.onrender.com/friendsdata', friendsData)
+          console.log(r)
+      })
+
+      
       
       navigate('/login');
     }

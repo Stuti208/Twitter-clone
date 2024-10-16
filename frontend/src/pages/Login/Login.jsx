@@ -9,10 +9,13 @@ import auth from '../../firebase.init.js'
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { IconButton } from '@mui/material';
+import { useContext } from 'react';
+import { profileContext } from '../../Context/Context';
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const profile = useContext(profileContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -53,10 +56,13 @@ const Login = () => {
     signInWithEmailAndPassword(email, password);
     console.log(user)
     
-    const res = await axios.get("https://twitter-clone-0b2e.onrender.com/loggedInUser", {
-      params:{email:email}
-    })
-    console.log(res)
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+         .then(res => res.json())
+         .then(data => {
+           console.log(data)
+            profile.setProfile(data[0]);
+          })
+    // profile.setProfile(res.data[0]);
   }
 
 

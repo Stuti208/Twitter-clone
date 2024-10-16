@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import './Widgets.css'
 import { TwitterTimelineEmbed,TwitterTweetEmbed } from 'react-twitter-embed';
+import FollowProfile from './FollowProfile';
+import useLoggedInUser from '../../hooks/useLoggedInUser';
 
 const Widgets = () => {
 
   const [search, setSearch] = useState('');
+  const [userData, setUserData] = useState('');
+  const [loggedInUser, setLoggedInUser] = useLoggedInUser({});
+
+  useEffect(() => {
+
+    fetch('https://twitter-clone-0b2e.onrender.com/userdata')
+      .then(res => res.json())
+      .then(async (data) => {
+         setUserData(data);
+        // console.log(data)
+        console.log(loggedInUser)
+      })
+    
+  }, []);
 
   return (
     <div className='widgets'>
@@ -25,6 +41,14 @@ const Widgets = () => {
       <div className="widgets-heading">
           <h2>What's happening</h2>
       </div>
+
+      {
+        userData && userData.map(data => {
+          // console.log(data)
+          if(data.email!==loggedInUser.email)
+             return <FollowProfile key={data._id} data={data}  />
+        })
+     }
 
       {/* <div className="widgets-content">
          <TwitterTweetEmbed

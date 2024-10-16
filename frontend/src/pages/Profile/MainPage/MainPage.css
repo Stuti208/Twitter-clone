@@ -166,3 +166,16 @@
     margin-bottom: 90px;
     text-align: center;
 }
+
+/* .fbtn {
+    margin-left: 470px;
+    margin-top: 10px;
+} */
+
+.fbtn {
+    background-color: rgb(56, 189, 241);
+    color: white;
+    border:none;
+    box-shadow: none;
+    font-size: 16px;
+}

@@ -8,7 +8,7 @@ import auth from '../firebase.init';
 import { signOut } from 'firebase/auth'
 import { Outlet } from 'react-router-dom';
 import useLoggedInUser from '../hooks/useLoggedInUser'
-import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext,notificationsEnabledContext} from '../Context/Context';
+import { profileImageContext,loggedInUserContext,editStatusContext,postStatusContext,bookmarkStatusContext,likeStatusContext,notificationsEnabledContext,profileContext} from '../Context/Context';
 
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
 
   const [loggedInUser,setLoggedInUser] = useState({});
   const [profileImage, setProfileImage] = useState('');
+  const [profile, setProfile] = useState('');
   const [editStatus, setEditStatus] = useState(false);
   const [postStatus, setPostStatus] = useState(false);
   const [bookmarkStatus, setBookmarkStatus] = useState(false);
@@ -80,6 +81,7 @@ const Home = () => {
 
   return (
     <>
+      {/* <profileContext.Provider value={{ profile, setProfile }}> */}
       <notificationsEnabledContext.Provider value={{ notificationsEnabled, setNotificationsEnabled }}>
       <loggedInUserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       <editStatusContext.Provider value={{editStatus,setEditStatus,toggleEditStatus}}>
@@ -100,7 +102,9 @@ const Home = () => {
       </postStatusContext.Provider>
       </editStatusContext.Provider>
       </loggedInUserContext.Provider>
-      </notificationsEnabledContext.Provider>
+        </notificationsEnabledContext.Provider>
+        {/* </profileContext.Provider> */}
+
     </>
   )
 }
