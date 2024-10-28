@@ -137,24 +137,24 @@ async function run() {
 
     })
 
-    app.patch('/addfriendUpdates/:userid', async (req, res) => {
+    app.patch('/friendUpdates/:userid', async (req, res) => {
       const filter = req.params;
       const profile = req.body;
-      const updateDoc = { $addToSet: profile };
+      const updateDoc = { $set: profile };
       const options = { upsert: true };
       const result = await friendCollections.updateOne(filter, updateDoc, options);
       res.send(result);
 
     })
 
-    app.patch('/deletefriendUpdates/:userid', async (req, res) => {
-      const filter = req.params;
-      const profile = req.body;
-      const updateDoc = { $pullAll: profile };
-      const result = await friendCollections.updateOne(filter, updateDoc);
-      res.send(result);
+    // app.patch('/friendUpdates/:userid', async (req, res) => {
+    //   const filter = req.params;
+    //   const profile = req.body;
+    //   const updateDoc = { $set: profile };
+    //   const result = await friendCollections.updateOne(filter, updateDoc);
+    //   res.send(result);
 
-    })
+    // })
 
 
     app.patch('/uniquePostUpdate/:postid', async (req, res) => {

@@ -24,6 +24,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   const [coverImage, setCoverImage] = useState();
   const [userData, setUserData] = useState();
   const [friends, setFriends] = useState();
+  const [targetfriends, setTargetFriends] = useState();
   
 
   // const [notificationsEnabled, setNotificationsEnabled] = useState(
@@ -75,196 +76,223 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
 
 
   useEffect(() => {
-        const email = user[0].email;
+    const email = user[0].email;
 
-        fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
-         .then(res => res.json())
-         .then(data => {
-           setFriends(data[0]);
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
+      .then(res => res.json())
+      .then(data => {
+        setFriends(data[0]);
            
-           if (friends.following.includes(loggedInUser._id))
-             followStatus.setFollow('true')
-           else
-             followStatus.setFollow('false')
-          })
+        if (friends.following.includes(loggedInUser._id))
+          followStatus.setFollow('true')
+        else
+          followStatus.setFollow('false')
+      })
     
-  }, [loggedInUser,followStatus.follow]);
+    const targ_email = loggedInUser.email;
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${loggedInUser.email}`)
+      .then(res => res.json())
+      .then(data => {
+        setTargetFriends(data[0])
+      })
+           
+    
+      }, [loggedInUser]);
 
-  // const changePostStatus = () => {
-  //   if (postStatus)
-  //     setPostStatus(false)
-  //   else
-  //   setPostStatus(true)
-  // }
+    // const changePostStatus = () => {
+    //   if (postStatus)
+    //     setPostStatus(false)
+    //   else
+    //   setPostStatus(true)
+    // }
 
 
-  const requestNotificationPermission = () => {
-    if ('Notification' in window) {
+    const requestNotificationPermission = () => {
+      if ('Notification' in window) {
         Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                console.log('Notification permission granted.');
-            } else {
-                console.log('Notification permission denied.');
-            }
+          if (permission === 'granted') {
+            console.log('Notification permission granted.');
+          } else {
+            console.log('Notification permission denied.');
+          }
         });
+      }
     }
-}
 
-  const toggleNotifications = () => {
-    notificationStatus.setNotificationsEnabled(!notificationStatus.notificationsEnabled);
-    localStorage.setItem('notificationsEnabled', !notificationStatus.notificationsEnabled);
+    const toggleNotifications = () => {
+      notificationStatus.setNotificationsEnabled(!notificationStatus.notificationsEnabled);
+      localStorage.setItem('notificationsEnabled', !notificationStatus.notificationsEnabled);
 
-    if (!notificationStatus.notificationsEnabled) {
+      if (!notificationStatus.notificationsEnabled) {
         requestNotificationPermission(); // Request permission if enabling
-    }
-};
+      }
+    };
 
 
-  const handleUploadCoverImage = (e) => {
-    const image = e.target.files[0];
+    const handleUploadCoverImage = (e) => {
+      const image = e.target.files[0];
 
-    const formData = new FormData();
-    formData.set('image', image);
+      const formData = new FormData();
+      formData.set('image', image);
 
-    axios.post('https://api.imgbb.com/1/upload?key=2f52efed5e338fab7b042d1a5725375c', formData)
-      .then((res) => {
-        const url = res.data.data.display_url;
-        console.log(url);
+      axios.post('https://api.imgbb.com/1/upload?key=2f52efed5e338fab7b042d1a5725375c', formData)
+        .then((res) => {
+          const url = res.data.data.display_url;
+          console.log(url);
 
-        const userCoverImage = {
-          coverImage:url
-       }
+          const userCoverImage = {
+            coverImage: url
+          }
    
-       axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userCoverImage)
-          .then(res => console.log(res))
+          axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userCoverImage)
+            .then(res => console.log(res))
         
-        setCoverImage(url);
+          setCoverImage(url);
         
-      })
+        })
     
     
     
-  }
+    }
 
-  const handleUploadProfileImage = (e) => {
-    const image = e.target.files[0];
+    const handleUploadProfileImage = (e) => {
+      const image = e.target.files[0];
 
-    const formData = new FormData();
-    formData.set('image', image);
+      const formData = new FormData();
+      formData.set('image', image);
 
-    axios.post('https://api.imgbb.com/1/upload?key=2f52efed5e338fab7b042d1a5725375c', formData)
-      .then((res) => {
-        const url = res.data.data.display_url;
-        console.log(url);
+      axios.post('https://api.imgbb.com/1/upload?key=2f52efed5e338fab7b042d1a5725375c', formData)
+        .then((res) => {
+          const url = res.data.data.display_url;
+          console.log(url);
 
-        const userProfileImage = {
-          profileImage:url
-        }
+          const userProfileImage = {
+            profileImage: url
+          }
         
-        // userdata update
-        axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userProfileImage)
-          .then(res => console.log(res))
+          // userdata update
+          axios.patch(`https://twitter-clone-0b2e.onrender.com/userUpdates/${loggedInUser.email}`, userProfileImage)
+            .then(res => console.log(res))
         
-        value.setProfileImage(url);
+          value.setProfileImage(url);
 
-        // postdata update
-        axios.patch(`https://twitter-clone-0b2e.onrender.com/postUpdates/${loggedInUser._id}`, userProfileImage)
-          .then(res => console.log(res))
-      })
-  }
+          // postdata update
+          axios.patch(`https://twitter-clone-0b2e.onrender.com/postUpdates/${loggedInUser._id}`, userProfileImage)
+            .then(res => console.log(res))
+        })
+    }
 
-  const handleBack = () => {
+    const handleBack = () => {
       const email = user[0].email;
 
       fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
         .then(res => res.json())
         .then(data => {
-            setLoggedInUser(data[0]);
-            console.log(data[0])
+          setLoggedInUser(data[0]);
+          console.log(data[0])
         })
-    navigate('/home')
-  }
-
-  const handleFollow = () => {
-
-    if(followStatus.follow == 'true')
-      followStatus.setFollow('false')
-    else 
-      followStatus.setFollow('true')
-
-    const email = user[0].email;
-
-    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
-      .then(res => res.json())
-      .then(data => {
-        setUserData(data[0]);
-        console.log(data[0])
-      })
-
-    
-    if (followStatus.follow == 'true') {
-          
-          const user1Profile = {
-            following: [loggedInUser._id]
-          }
-          
-          axios.patch(`https://twitter-clone-0b2e.onrender.com/addfriendUpdates/${userData._id}`, user1Profile)
-            .then(res => console.log(res))
-        
-        
-          const user2Profile = {
-            followers: [userData._id]
-          }
-          
-          axios.patch(`https://twitter-clone-0b2e.onrender.com/addfriendUpdates/${loggedInUser._id}`, user2Profile)
-            .then(res => console.log(res))
+      navigate('/home')
     }
 
-    else {
+    const handleFollow = async () => {
 
-      const user1Profile = {
-        following: [loggedInUser._id]
-      }
-      
-      axios.patch(`https://twitter-clone-0b2e.onrender.com/deletefriendUpdates/${userData._id}`, user1Profile)
-        .then(res => console.log(res))
+      if (followStatus.follow === 'true')
+        followStatus.setFollow('false')
+      else
+        followStatus.setFollow('true')
+
+      const email = user[0].email;
+
+      await fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+          setUserData(data[0]);
+          console.log(data[0])
+        })
+
     
-    
-      const user2Profile = {
-        followers: [userData._id]
+      if (followStatus.follow === 'true') {
+          
+        console.log(friends);
+        console.log(targetfriends);
+
+        friends.following = friends.following.push(loggedInUser._id)
+        friends.Fname=friends.Fname.push(loggedInUser.name)
+
+        const user1Profile = {
+          following:  friends.following,
+          Fname: friends.Fname
+        }
+          
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
+          .then(res => console.log(res))
+        
+        
+        targetfriends.followers = targetfriends.followers.push(userData._id);
+        targetfriends.fname = targetfriends.fname.push(userData.name)
+        
+        const user2Profile = {
+          followers: targetfriends.followers,
+          fname: targetfriends.fname
+        }
+          
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
+          .then(res => console.log(res))
       }
+
+      else {
+
+        friends.following = friends.following.remove(loggedInUser._id)
+        friends.Fname=friends.Fname.remove(loggedInUser.name)
+
+        const user1Profile = {
+          following:  friends.following,
+          Fname: friends.Fname
+        }
       
-      axios.patch(`https://twitter-clone-0b2e.onrender.com/deletefriendUpdates/${loggedInUser._id}`, user2Profile)
-        .then(res => console.log(res))
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
+          .then(res => console.log(res))
+    
+        targetfriends.followers = targetfriends.followers.remove(userData._id);
+        targetfriends.fname = targetfriends.fname.remove(userData.name)
+        
+        const user2Profile = {
+          followers: targetfriends.followers,
+          fname: targetfriends.fname
+        }
+      
+        axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
+          .then(res => console.log(res))
+      }
+
+      console.log(followStatus.follow)
+
     }
 
 
-  }
-
-
-  return (
-    <>
+    return (
+      <>
       
-      <div>
-       <div className="backgroundimage">
-          <div className="mainpage-header">
+        <div>
+          <div className="backgroundimage">
+            <div className="mainpage-header">
            
-            <IconButton
-              style={{ position: 'relative', top: '-3px' }}
-              onClick={handleBack}>
+              <IconButton
+                style={{ position: 'relative', top: '-3px' }}
+                onClick={handleBack}>
                 <ArrowBackIcon />
-            </IconButton>
+              </IconButton>
                 
             
 
-      <div className="header-container">
-          <div className="header-info">
-            <h2>{loggedInUser.name}</h2>
-            <p>{ userPosts.length} posts</p>
-          </div>
+              <div className="header-container">
+                <div className="header-info">
+                  <h2>{loggedInUser.name}</h2>
+                  <p>{userPosts.length} posts</p>
+                </div>
    
-              {
-                user && user[0].email === loggedInUser.email &&
+                {
+                  user && user[0].email === loggedInUser.email &&
                   (
                     <label>
                       <input style={{ scale: '1.4', marginRight: '10px' }}
@@ -273,59 +301,59 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
                         onChange={toggleNotifications}
                       />
                       Enable Notifications
-                  </label>
+                    </label>
                   )
-              }
+                }
 
-      </div>
+              </div>
             
-      </div>
+            </div>
       
-      <div className="cover-image">
-          {  loggedInUser.coverImage?
+            <div className="cover-image">
+              {loggedInUser.coverImage ?
                 <img
                   src={loggedInUser.coverImage}
-                  style={{ width: "100%", height: '100%', objectFit: 'cover' }}/>:
-              <img src={coverIcon} style={{ width: "100%", height: '100%', objectFit: 'cover' }} />
-          }
+                  style={{ width: "100%", height: '100%', objectFit: 'cover' }} /> :
+                <img src={coverIcon} style={{ width: "100%", height: '100%', objectFit: 'cover' }} />
+              }
             
-            {
-              user && user[0].email === loggedInUser.email &&
-              (
-                <label htmlFor='coverimage' className='select-coverimage'>
-                  <EditIcon style={{ scale: '1.2', color: 'white', paddingTop: '5px' }} />
-                </label>
-              )
-            }
+              {
+                user && user[0].email === loggedInUser.email &&
+                (
+                  <label htmlFor='coverimage' className='select-coverimage'>
+                    <EditIcon style={{ scale: '1.2', color: 'white', paddingTop: '5px' }} />
+                  </label>
+                )
+              }
 
-            <input
-              type='file'
-              id='coverimage'
-              style={{ display: 'none' }}
-              onChange={handleUploadCoverImage}></input>
+              <input
+                type='file'
+                id='coverimage'
+                style={{ display: 'none' }}
+                onChange={handleUploadCoverImage}></input>
               
           
-      </div>
+            </div>
 
-      { user && user[0].email === loggedInUser.email?
-            <EditProfile loggedInUser={loggedInUser} /> :
-            <input type='button'
-              value={followStatus.follow == 'false' ? 'Follow' : 'Following'}
-              className={followStatus.follow=='false'? `editProfile-btn fbtn`:`editProfile-btn`}
-              onClick={handleFollow}></input>
-      }
+            {user && user[0].email === loggedInUser.email ?
+              <EditProfile loggedInUser={loggedInUser} /> :
+              <input type='button'
+                value={followStatus.follow === 'false' ? 'Follow' : 'Following'}
+                className={followStatus.follow === 'false' ? `editProfile-btn fbtn` : `editProfile-btn`}
+                onClick={handleFollow}></input>
+            }
 
-      <div className="profile-image">
-        {  loggedInUser.profileImage?
-              <img
-                src={loggedInUser.profileImage}
-                style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} /> :
-              <Avatar style={{scale:'3.85',marginLeft:'58px',marginTop:'57px'}}/>
-        }
+            <div className="profile-image">
+              {loggedInUser.profileImage ?
+                <img
+                  src={loggedInUser.profileImage}
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} /> :
+                <Avatar style={{ scale: '3.85', marginLeft: '58px', marginTop: '57px' }} />
+              }
 
-            {
-              user && user[0].email === loggedInUser.email &&
-              (
+              {
+                user && user[0].email === loggedInUser.email &&
+                (
                   <label htmlFor='profileimage' className='select-profileimage'
                     style={{
                       marginLeft: loggedInUser.profileImage ? '111px' : '120px',
@@ -333,59 +361,59 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
                     }}>
                     <AddIcon
                       style={{ scale: '1.4', color: 'white', paddingTop: '8px' }} />
-                    </label>
-              )
-            }
+                  </label>
+                )
+              }
 
-        <input
-          type='file'
-          id='profileimage'
-          style={{ display: 'none' }}
-          onChange={handleUploadProfileImage}></input>
-      </div>
+              <input
+                type='file'
+                id='profileimage'
+                style={{ display: 'none' }}
+                onChange={handleUploadProfileImage}></input>
+            </div>
 
-      <div className="profile-info">
-        <h2>{loggedInUser.name}</h2>
-        <p>@{loggedInUser.username}</p>
-      </div>
+            <div className="profile-info">
+              <h2>{loggedInUser.name}</h2>
+              <p>@{loggedInUser.username}</p>
+            </div>
 
-        <div className="bio" style={{display:loggedInUser.bio?'block':'none'}}>
-            <p>{loggedInUser.bio}</p>
-      </div>
+            <div className="bio" style={{ display: loggedInUser.bio ? 'block' : 'none' }}>
+              <p>{loggedInUser.bio}</p>
+            </div>
 
-      <div className="additional-info">
-        <div className="location" style={{display:loggedInUser.location?'flex':'none'}}>
-           <LocationOnIcon style={{scale:'0.9'}} />
-              <p>{ loggedInUser.location}</p>
-        </div>
+            <div className="additional-info">
+              <div className="location" style={{ display: loggedInUser.location ? 'flex' : 'none' }}>
+                <LocationOnIcon style={{ scale: '0.9' }} />
+                <p>{loggedInUser.location}</p>
+              </div>
         
-        <div className="joiningDate" >
-           <CalendarMonthIcon style={{scale:'0.9'}} />
-           <p>Joined July 2024</p>
+              <div className="joiningDate" >
+                <CalendarMonthIcon style={{ scale: '0.9' }} />
+                <p>Joined July 2024</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="posts">
+            <h3>Tweets</h3>
+          </div>
+
+          <div
+            className="post-status"
+            style={{ display: userPosts.length !== 0 ? "none" : 'block' }}>
+            <h2>You haven't posted anything</h2>
+          </div>
+
+          {
+            userPosts.slice().reverse().map(post => {
+              return <UserPost key={post._id} post={post} changePostStatus={postValue.changePostStatus} />
+            })
+          }
+
+
         </div>
-        </div>
-      </div>
+      </>
+    )
+  }
 
-      <div className="posts">
-        <h3>Tweets</h3>
-      </div>
-
-      <div
-        className="post-status"
-        style={{ display:userPosts.length!==0?"none":'block'}}>
-        <h2>You haven't posted anything</h2>
-      </div>
-
-      {
-        userPosts.slice().reverse().map(post => {
-           return <UserPost key={post._id} post={post} changePostStatus={postValue.changePostStatus} />
-        })
-      }
-
-
-        </div>
-   </>
-  )
-}
-
-export default MainPage;
+    export default MainPage
