@@ -49,7 +49,7 @@ async function run() {
 
     app.get('/loggedInUserFriends', async (req, res) => {
       const email = req.query.email;
-      const friends = await friendCollections.findOne({ email: email }).toArray();
+      const friends = await friendCollections.find({ email: email }).toArray();
       res.send(friends);
     })
 
@@ -150,7 +150,7 @@ async function run() {
     app.patch('/deletefriendUpdates/:userid', async (req, res) => {
       const filter = req.params;
       const profile = req.body;
-      const updateDoc = { $pull: profile };
+      const updateDoc = { $pullAll: profile };
       const result = await friendCollections.updateOne(filter, updateDoc);
       res.send(result);
 

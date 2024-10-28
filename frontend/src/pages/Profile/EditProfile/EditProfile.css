@@ -21,3 +21,31 @@
     margin-top: 44px;
 }
 
+.avatar-container {
+    margin-left: 15px;
+    margin-top: 5px;
+    color:rgb(122, 113, 113);
+}
+
+.savebutton {
+    position:relative;
+    left:190px;
+}
+
+.avatar-btn {
+    background: none;
+    color:blue;
+    border:none;
+    font-size: 17px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 12px;
+    margin-left: 11px;
+}
+
+.avatar-btn:hover {
+    text-decoration: underline;
+}
+
+.avatar-img::after {
+    border-color: red;
+}

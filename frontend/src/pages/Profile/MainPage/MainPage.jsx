@@ -59,7 +59,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
                 setLoggedInUser(data[0]);
           })
     }
-  }, [coverImage]);
+  }, [coverImage,value.profileImage]);
 
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
              followStatus.setFollow('false')
           })
     
-  }, [loggedInUser]);
+  }, [loggedInUser,followStatus.follow]);
 
   // const changePostStatus = () => {
   //   if (postStatus)
@@ -381,6 +381,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
            return <UserPost key={post._id} post={post} changePostStatus={postValue.changePostStatus} />
         })
       }
+
 
         </div>
    </>
