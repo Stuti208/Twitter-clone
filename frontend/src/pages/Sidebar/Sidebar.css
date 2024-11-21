@@ -17,7 +17,7 @@
 
 .sidebar-icon {
     margin-top: 7px;
-    margin-left: 18px;
+    margin-right: 15px;
     color:rgb(56, 189, 241);
     font-size: 30px;
 }
@@ -141,7 +141,7 @@
         display:none;
     }
 
-    .sidebar-icon {
+    .sidebar-icon-container {
         display:none;
     }
 

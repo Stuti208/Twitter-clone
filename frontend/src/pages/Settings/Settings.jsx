@@ -48,27 +48,9 @@ const Settings = () => {
   const loggedInUser = userValue.loggedInUser;
 
 
-  const style = {
-    position: 'absolute',
-    top: '17%',
-    left: '30%',
-    width:'34%',
-    height: '58%',
-    backgroundColor:'white',
-    borderRadius: '25px',  
-    boxShadow:'0px 0px 10px grey',
-  }
+  
 
-  const style2 = {
-    position: 'absolute',
-    top: '12%',
-    left: '30%',
-    width:'36%',
-    height: '70%',
-    backgroundColor:'white',
-    borderRadius: '25px',  
-    boxShadow:'0px 0px 10px grey',
-  }
+  
 
 
   function onSignup() {
@@ -285,7 +267,7 @@ const Settings = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style}>
+        <Box className='phone-modal'>
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}
@@ -300,7 +282,7 @@ const Settings = () => {
             {/* <button className='editpage-savebtn' onClick={handleSave}> Save</button> */}
           </div>
 
-          <div className='verification-box'>
+          <div className='verification-box subscription-box module'>
               
            
 
@@ -319,7 +301,7 @@ const Settings = () => {
                 required: true,
                 autoFocus: true
               }}
-              inputStyle={{backgroundColor:"white",color:"black",border:"1px solid rgb(56, 189, 241)",width:"330px",height:"30px",marginTop:"30px",marginLeft:"3px",borderRadius:"10px",padding:"18px 45px",fontSize:"15px"}} />
+              inputStyle={{backgroundColor:"white",color:"black",border:"1px solid rgb(56, 189, 241)",width:"75%",height:"30px",marginTop:"30px",marginLeft:"3px",borderRadius:"10px",padding:"18px 45px",fontSize:"15px"}} />
             
             {/* <input type="tel" required
                 className='phone-num'
@@ -349,7 +331,7 @@ const Settings = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style}>
+        <Box className='phone-modal'>
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}
@@ -408,7 +390,7 @@ const Settings = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style}>
+        <Box className='phone-modal'>
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}
@@ -448,7 +430,7 @@ const Settings = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style2}>
+        <Box className="subscription-module">
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}
@@ -461,7 +443,7 @@ const Settings = () => {
             
           </div>
 
-          <div className='verification-box'>
+          <div className='verification-box subscription-box'>
               
             <button className='subscription btn1' onClick={() => { setPlan('Gold Plan'); setAmount(1000); setTweetCount('unlimited'); makePayment()}}>
               <h2>Gold Plan</h2>

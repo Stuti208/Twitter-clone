@@ -90,9 +90,13 @@ const Login = () => {
       <div className="image-container">
         <img src={twitterImage} alt="Twitter-image"/>
       </div>
-      <div className="form-container">
-        <TwitterIcon className='Twitter-icon-container'
-                  style={{ fontSize:'37px',color:'rgb(6, 166, 230)'}}/>
+        <div className="form-container">
+          <div className="Twitter-icon-container">
+
+          
+             <TwitterIcon className='Twitter-icon'
+                style={{ fontSize: '37px', color: 'rgb(6, 166, 230)' }} />
+            </div>
         <h1 className="heading-1">Happening now</h1>
         <h1 className="heading-2">Log in to Twitter</h1>
 

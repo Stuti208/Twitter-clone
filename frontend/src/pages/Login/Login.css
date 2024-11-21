@@ -171,13 +171,14 @@ body {
     height:6vh;
     width:100vw;
     background-color: rgb(224, 223, 230);
-    margin-top: 0;
+    position: absolute;
+    bottom:0%;
 }
 
 .show-password {
-    position: absolute;
+    position: relative;
     /* top:0px; */
-    right:14%;
+    right:9%;
 }
 
 .show-password:hover {
@@ -187,7 +188,7 @@ body {
 
 .forgot-pass-btn {
    color:rgb(6, 166, 230);
-   margin-left: 200px;
+   margin-left:32%;
    margin-top: -4px;
 }
 
@@ -224,7 +225,7 @@ body {
 
     .image-container img {
         width:95%;
-        height:77%;
+        height:67%;
         margin-top: 90px;
     }
 
@@ -242,8 +243,8 @@ body {
     }
 
     .image-container img {
-        width:80%;
-        height:70%;
+        width:95%;
+        height:60%;
         margin-top: 90px;
     }
 
@@ -261,9 +262,9 @@ body {
     }
 
     .image-container img {
-        width:75%;
-        height:60%;
-        margin-top: 90px;
+        width:85%;
+        height:50%;
+        margin-top: 130px;
     }
 
     .heading-1 {
@@ -283,6 +284,12 @@ body {
     .login-container {
         margin-left: 10px;
     }
+
+    .signup-form-heading {
+        font-size:60px;
+        margin-top: -25px;
+        margin-left: 45px;
+    }
 }
 
 @media only screen and (max-width: 600px) and (min-width:500px){
@@ -300,6 +307,27 @@ body {
 
     .or-class {
         margin-left: 20%;
+    }
+
+    .show-password {
+        position: relative;
+        /* top:0px; */
+        left:85%;
+        bottom:48px;
+    }
+
+    .form {
+        margin-top:15px;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding-right: 10px;
+        padding:10px;
+    }
+
+    .signup-form-heading {
+        font-size:50px;
+        margin-top: -25px;
+        margin-left: 35px;
     }
 
    
@@ -332,6 +360,27 @@ body {
     .or-class {
         margin-left: 22%;
     }
+
+    .show-password {
+        position: relative;
+        /* top:0px; */
+        left:85%;
+        bottom:48px;
+    }
+
+    .form {
+        margin-top:15px;
+        margin-left: 30px;
+        margin-right: 50px;
+        padding-right: 10px;
+        padding:10px;
+    }
+
+    .signup-form-heading {
+        font-size:45px;
+        margin-top: -25px;
+        margin-left: 30px;
+    }
    
 }
 
@@ -361,4 +410,93 @@ body {
     .login-class {
         padding-right: 10%;
     }
+
+    .footer {
+        display: none;
+    }
+
+    .show-password {
+        position: relative;
+        /* top:0px; */
+        left:95%;
+        bottom:48px;
+    }
+
+    .form {
+        margin-top:15px;
+        margin-left: 10px;
+        margin-right: 50px;
+        padding-right: 10px;
+        padding:10px;
+    }
+
+    .signup-form-heading {
+        font-size:45px;
+        margin-top: -25px;
+        margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 350px){
+    .heading-1 {
+        font-size: 31px;
+        padding-left: -10px;
+    }
+    .heading-2 {
+        font-size: 18px;
+    }
+
+    .btn-container {
+        /* padding-right: auto;
+        padding-left: auto; */
+        padding-right: 5%;
+    }
+
+    .or-class {
+        margin-left: 30%;
+    }
+
+    .google-button {
+        padding-right: 10%;
+    }
+
+    .login-class {
+        padding-right: 10%;
+    }
+
+    .login-container {
+        height:100vh;
+        width:100vw;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .form {
+        margin-top:15px;
+        margin-left: 10px;
+        margin-right: 50px;
+        padding-right: 10px;
+        padding:10px;
+    }
+
+    
+.show-password {
+    position: relative;
+    /* top:0px; */
+    left:110%;
+    bottom:48px;
+}
+
+.forgot-pass-btn {
+    margin-left:42%;
+    margin-top: -14px;
+ }
+
+ .signup-form-heading {
+    font-size:41px;
+    margin-top: -25px;
+    margin-left: 25px;
+}
 }

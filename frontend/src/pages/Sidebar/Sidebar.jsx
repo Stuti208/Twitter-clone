@@ -58,10 +58,9 @@ const Sidebar = ({ handleLogOut}) => {
 
   return (
     <div className='sidebar'>
-      <div className="sidebar-icon">
-          <TwitterIcon
-            className='sidebar-icon'
-            style={{ fontSize: '30px' }} />
+      <div className="sidebar-icon-container">
+          <TwitterIcon className="sidebar-icon"
+            style={{ fontSize: '30px',marginLeft:'5%' }} />
       </div>
 
        <CustomLink to='/home/feed'>
