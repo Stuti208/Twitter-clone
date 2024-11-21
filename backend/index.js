@@ -12,7 +12,6 @@ const port = 3304
 const { Resend } = require('resend');
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 const sendMail =require("./controllers/sendMail");
-const sendInvoice = require('./controllers/sendInvoice');
 
 app.use(cors());
 app.use(express.json());
