@@ -5,8 +5,8 @@ import './Sidebar.css'
 const CustomLink = ({ children, to,...props }) => {
     
   let resolved = useResolvedPath(to);
-  let match = useMatch({ path: resolved.pathname,end:true });
-    
+  let match = useMatch({ path: resolved.pathname, end: true });
+  
   return (
     <div>
       <Link className='highlighted-link'

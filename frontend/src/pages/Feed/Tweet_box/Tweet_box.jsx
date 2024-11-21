@@ -8,11 +8,15 @@ import useLoggedInUser from '../../../hooks/useLoggedInUser';
 import { profileImageContext,loggedInUserContext,postStatusContext } from '../../../Context/Context';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
+import { useTranslation } from 'react-i18next';
+import VideoFileIcon from '@mui/icons-material/VideoFile';
 
 const Tweet_box = () => {
 
+  const { t } = useTranslation();
   const [post, setPost] = useState('');  
   const [imageURL, setImageURL] = useState(''); 
+  const [videoURL, setVideoURL] = useState(''); 
   const [isLoading, setIsLoading] = useState(false);
   const value = useContext(profileImageContext)
   const user = useAuthState(auth);
@@ -20,6 +24,11 @@ const Tweet_box = () => {
   const userValue=useContext(loggedInUserContext)
   const loggedInUser = userValue.loggedInUser;
   const postValue = useContext(postStatusContext);
+
+  const [friendsCount, setFriendsCount] = useState(0);
+  const [postCount, setPostCount] = useState(0); 
+  const [canPost, setCanPost] = useState(false); 
+  const [message, setMessage] = useState(''); 
 
 
   // useEffect(() => {
@@ -36,9 +45,78 @@ const Tweet_box = () => {
   // }, [value.profileImage]);
 
 
+  useEffect(() => {
+  
+      const email=loggedInUser.email
+          
+      fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data[0]);
+          setFriendsCount(data[0].following?data[0].following.length:0);
+        })
+    
+      setPostCount(0)
+
+}, [loggedInUser]);
+
+  
+  useEffect(() => {
+    // console.log(postCount)
+    const currentDate = new Date();
+    const currentTime = currentDate.getTime();
+
+    const startPostingTime = new Date();
+    startPostingTime.setHours(10, 0, 0, 0); // 10:00 AM IST
+    const endPostingTime = new Date();
+    endPostingTime.setHours(10, 30, 0, 0); // 10:30 AM IST
+
+    console.log("Current Time:", currentDate);
+    console.log("Start Posting Time:", startPostingTime);
+    console.log("End Posting Time:", endPostingTime);
+
+    console.log("Current Time:", currentDate.getTime());
+    console.log("Start Posting Time:", startPostingTime.getTime());
+    console.log("End Posting Time:", endPostingTime.getTime());
+
+    if (friendsCount <=1) {
+        if (currentTime >= startPostingTime.getTime() && currentTime <= endPostingTime.getTime() && postCount ===0) {
+            setCanPost(true);
+        } else {
+            setCanPost(false);
+            setMessage('You can only post once between 10:00 AM to 10:30 AM IST.');
+        }
+    }
+   
+    else if(friendsCount > 1 && friendsCount <= 10) {
+        if (postCount < 2) {
+            setCanPost(true);
+        } else {
+            setCanPost(false);
+            setMessage('You have reached your post limit of 2 posts for today.');
+        }
+    }
+   
+    else if (friendsCount > 10) {
+        setCanPost(true);
+    }
+
+    // Reset post count daily
+    // const resetTime = new Date();
+    // resetTime.setHours(0, 0, 0, 0); // Midnight reset
+    
+    // if (currentTime >= resetTime.getTime()) {
+    //     setPostCount(0);
+    // }
+    
+    
+  }, [friendsCount, postCount]);
+  
+
   const handleUploadImage = (e) => {
     setIsLoading(true);
     const image = e.target.files[0];
+    console.log(e.target.files[0])
 
     const formData = new FormData();
     formData.set('image', image);
@@ -59,41 +137,82 @@ const Tweet_box = () => {
   }
 
 
-  const handleTweet = async (e) => {
-      e.preventDefault();
-    
-    const userPost = {
-        userid: loggedInUser._id,
-        name:loggedInUser.name,
-        username: loggedInUser.username,
-        email:loggedInUser.email,
-        post: post,
-        image: imageURL,
-        profileImage:loggedInUser.profileImage
-      }
-    console.log(userPost);
+  const handleUploadVideo = async(e) => {
+    setIsLoading(true);
+    const video = e.target.files[0];
+    console.log(e.target.files[0])
+
+    const formData = new FormData();
+    formData.append('file', video);
+    formData.append("upload_preset", "video_preset");
     
     try {
-    
-      const res = await axios.post('https://twitter-clone-0b2e.onrender.com/post', userPost);
-      console.log(res);
-      postValue.changePostStatus();
-     
-      setImageURL('');
-      setPost('');
-      // e.target[0].value = '';
-    
-      // const postId = res.data.insertedId;
-      // console.log(postId);
+      let api = 'https://api.cloudinary.com/v1_1/dycgwxuuf/video/upload';
 
-      // const data = axios.get('http://localhost:3000/postdata', { postId })
-      // console.log(data)
+      let res=await axios.post(api, formData)
+        
+      const { secure_url } = res.data;
+      console.log(secure_url);
+      setVideoURL(secure_url);
+      console.log(videoURL);
+      setIsLoading(false);
     }
     catch (error) {
-      console.log(error);
+      console.log(error)
+      setIsLoading(false);
+      
     }
     
+  }
+
+
+  const handleTweet = async (e) => {
+    e.preventDefault();
+    
+    if (canPost) {
+    
+      const userPost = {
+        userid: loggedInUser._id,
+        name: loggedInUser.name,
+        username: loggedInUser.username,
+        email: loggedInUser.email,
+        post: post,
+        image: imageURL,
+        video: videoURL,
+        profileImage: loggedInUser.profileImage
+      }
+      console.log(userPost);
+    
+      try {
+    
+        const res = await axios.post('https://twitter-clone-0b2e.onrender.com/post', userPost);
+        console.log(res);
+        postValue.changePostStatus();
      
+        setImageURL('');
+        setVideoURL('');
+        setPost('');
+        console.log(postCount)
+        setPostCount(postCount+1);
+        console.log(postCount)
+        // e.target[0].value = '';
+    
+        // const postId = res.data.insertedId;
+        // console.log(postId);
+
+        // const data = axios.get('http://localhost:3000/postdata', { postId })
+        // console.log(data)
+      }
+      catch (error) {
+        console.log(error);
+      }
+    
+      
+    } 
+
+    else {
+      alert(message);
+    }
   }
 
   return (
@@ -108,26 +227,35 @@ const Tweet_box = () => {
           <input
             type='text'
             className='textBox'
-            placeholder="What is happening?"
+            placeholder={ t("header")}
             value={post}
             onChange={(e)=> { setPost(e.target.value)}}
           />
         </div>
 
-        <div className="image-display" style={{display:imageURL?'block':'none'}}>
-          <img
+        <div className="image-display" style={{display:imageURL || videoURL?'block':'none'}}>
+          {imageURL &&
+            <img
             src={imageURL}
             style={{
-              width: '88%', minHeight:'180px',maxHeight: '400px', objectFit: 'cover',
+              width: '88%', minHeight: '180px', maxHeight: '400px', objectFit: 'cover',
               borderRadius: '18px', marginTop: "13px", marginLeft: "54px",
-              position:'relative',zIndex:'0'
+              position: 'relative', zIndex: '0'
             }} >
-          
-          </img> 
+         
+            </img>
+          }
+    
+          {         
+            videoURL && 
+            <div style={{marginLeft:'54px',marginTop:'7px'}}>
+               <video src={ videoURL} controls style={{ borderRadius: '20px',width:'95%',marginLeft:'45x',marginTop:'7px' }} />
+            </div>
+          }
           
           <IconButton 
-            style={{position:'absolute', top:'108px', left:'859px',  zIndex: '1'}}
-            onClick={e => setImageURL('')} >
+            onClick={e => { setImageURL(''); setVideoURL('') }}
+            className="tweet-close-btn">
             
              <CloseIcon className='close-icon'
                style={{transform: 'scale(1.3)'}}>
@@ -139,6 +267,7 @@ const Tweet_box = () => {
         </div>
         
         <div className="imageIcon-tweetBtn">
+          <div className="files" style={{display:'flex',gap:'10px'}}>
           <label htmlFor='image' className='image-icon'>
             <AddPhotoAlternateIcon
               style={{ color:'rgb(56, 189, 241)'}} />
@@ -146,15 +275,32 @@ const Tweet_box = () => {
           <input
             type='file'
             id='image'
+            accept="image/*"
             className='image-input'
             style={{
               display: 'none'
             }}
             onChange={handleUploadImage} />
+          
 
+          <label htmlFor='video' className='image-icon'>
+            <VideoFileIcon
+              style={{ color:'rgb(56, 189, 241)'}} />
+          </label>
+          <input
+            type='file'
+            id='video'
+            accept="video/*"
+            className='image-input'
+            style={{
+              display: 'none'
+            }}
+            onChange={handleUploadVideo} />
+
+       </div>
           <input type='submit'
             className='TweetBox-btn'
-            value='Tweet'
+            value={t("tweet")}
             disabled={imageURL || post ? false : true}
             style={{
               color: imageURL || post ? "white" : "#e6dfdf",

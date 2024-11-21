@@ -5,7 +5,7 @@ const SidebarOptions = ({active,Icon,text}) => {
   return (
       <div className={`sidebarOptions ${active && 'sidebarOptions_active'}`}>
           <Icon />
-          <h3>{text}</h3>
+          <h3 className='sidebar-text'>{text}</h3>
     </div>
   )
 }

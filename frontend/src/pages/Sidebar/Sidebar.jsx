@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import SettingsIcon from '@mui/icons-material/Settings';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'; import MoreIcon from '@mui/icons-material/More';
 import { Avatar, Divider, IconButton, Menu, MenuItem } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
@@ -17,9 +18,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import useLoggedInUser from '../../hooks/useLoggedInUser';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
+
 
 const Sidebar = ({ handleLogOut}) => {
   
+  const { t } = useTranslation();
   // const user = useAuthState(auth);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -54,55 +58,57 @@ const Sidebar = ({ handleLogOut}) => {
 
   return (
     <div className='sidebar'>
-      <TwitterIcon
-        className='Twitter-icon'
-        style={{ fontSize: '30px' }} />
-      
+      <div className="sidebar-icon">
+          <TwitterIcon
+            className='sidebar-icon'
+            style={{ fontSize: '30px' }} />
+      </div>
+
        <CustomLink to='/home/feed'>
-          <SidebarOptions active Icon={HomeIcon} text='Home'/>
+          <SidebarOptions active Icon={HomeIcon} text={ t("component1")}/>
       </CustomLink>
       
       <CustomLink to='/home/explore'>
-        <SidebarOptions active Icon={SearchIcon} text='Explore' />
+        <SidebarOptions active Icon={SearchIcon} text={ t("component2")} />
       </CustomLink>
 
       <CustomLink to='/home/notifications'>
-        <SidebarOptions active Icon={NotificationsNoneIcon} text='Notifications'/>
+        <SidebarOptions active Icon={NotificationsNoneIcon} text={ t("component3")}/>
       </CustomLink>
 
       <CustomLink to='/home/messages'>
-        <SidebarOptions active Icon={MailOutlineIcon} text='Messages'/>
+        <SidebarOptions active Icon={MailOutlineIcon} text={ t("component4")}/>
       </CustomLink>
 
       <CustomLink to='/home/bookmark'>
-        <SidebarOptions active Icon={BookmarkBorderIcon} text='Bookmarks'/>
+        <SidebarOptions active Icon={BookmarkBorderIcon} text={ t("component5")}/>
       </CustomLink>
 
       <CustomLink to='/home/communities'>
-        <SidebarOptions active Icon={PeopleOutlineIcon} text='Communities'/>
+        <SidebarOptions active Icon={PeopleOutlineIcon} text={ t("component6")}/>
       </CustomLink>
 
       <CustomLink to='/home/profile'>
-        <SidebarOptions active Icon={PermIdentityIcon} text='Profile'/>
+        <SidebarOptions active Icon={PermIdentityIcon} text={ t("component7")}/>
       </CustomLink>
 
-      {/* <CustomLink to='/home/more'> */}
-        <SidebarOptions active Icon={MoreIcon} text='More' />
-      {/* </CustomLink> */}
+      <CustomLink to='/home/settings'>
+        <SidebarOptions active Icon={SettingsIcon} text={ t("component8")} />
+      </CustomLink>
       
-      <button className='Tweet-btn'>Tweet</button>
+      <button className='Tweet-btn' onClick={() => navigate('/home/feed')}>{ t("tweet")}</button>
       
       <div className="Profile-info">
 
         {
-          loggedInUser.profileImage ?
+          loggedInUser && loggedInUser.profileImage ?
             <img src={loggedInUser.profileImage} className='sidebar-profileimage'/>:
             <Avatar style={{scale:'1.1'}}></Avatar>
         }
         
-         <div className="user-info">
-          <h4>{ loggedInUser.name}</h4>
-          <h5>{ `@${loggedInUser.username}`}</h5>
+         <div className="user-info sidebar-user">
+          <h4>{ loggedInUser && loggedInUser.name?loggedInUser.name:''}</h4>
+          <h5>@{ loggedInUser && loggedInUser.username?loggedInUser.username:''}</h5>
         </div>
         
         <IconButton
@@ -117,7 +123,7 @@ const Sidebar = ({ handleLogOut}) => {
         <Menu className='basic-menu' anchorEl={anchorEl} open={openMenu} onClick={handleClose} onClose={handleClose} >
           <MenuItem className='profile_info1' 
             onClick={()=>navigate('/')}>
-            Add an existing account
+            { t("existing-account")}
           </MenuItem>
 
           {/* <Divider/> */}
@@ -125,7 +131,7 @@ const Sidebar = ({ handleLogOut}) => {
           <MenuItem
             className='profile_info2'
             onClick={handleLogOut}>
-            Log out @{loggedInUser.username}
+            { t("logout")} @{loggedInUser.username}
           </MenuItem>
 
         </Menu>

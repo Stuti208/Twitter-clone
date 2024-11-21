@@ -1,0 +1,60 @@
+{
+    "component1":"होम",
+    "component2":"देखें",
+    "component3":"सूचनाएं",
+    "component4":"संदेश",
+    "component5":"बुकमार्क",
+    "component6":"कम्यूनिटिज़",
+    "component7":"प्रोफ़ाइल",
+    "component8":"सेटिंग्स",
+    "tweet":"ट्विट",
+    "tweets":"ट्वीट्स",
+    "follow":"फ़ॉलो करें",
+    "following":"फ़ॉलो कर रहे हैं",
+    "header":"क्या हो रहा है?!",
+    "search-bar":"खोजें",
+    "existing-account":"एक मौजूदा खाता जोड़ें",
+    "logout":"लॉग आउट करें",
+    "notification":{
+        "line1":"यहाँ अभी तक देखने के",
+        "line2":"लिए कुछ नहीं है.",
+        "line3":"पसंद से लेकर रीपोस्ट्स तक, और बहुत सारी चीज़ें, यह",
+        "line4":"वह जगह है जहां सभी चीज़ें होती हैं."
+    },
+    "messages":{
+        "line1":"आपके इनबॉक्स में",
+        "line2":"आपका स्वागत है!",
+        "line3":"ट्विटर पर अपने और अन्य लोगों के बीच निजी बातचीत के ज़रिए संदेशों का आदान ",
+        "line4":"-प्रदान करने, पोस्ट्स शेयर करने जैसे कई और काम करें. "
+    },
+    "msg-btn":"एक संदेश लिखें",
+    "bookmark":{
+        "line1":"बाद के लिए पोस्ट्स सेव करें",
+        "line2":"भविष्य में पोस्ट्स को आसानी से खोजने के लिए उन्हें",
+        "line3":"बुकमार्क करें."
+    },
+    "communities":{
+        "line1":"अभी तक कोई कम्यूनिटिज़ नहीं हैं--"
+    },
+    "posts":"पोस्ट्स",
+    "enable-notification":"Enable Notifications",
+    "edit-profile":"प्रोफ़ाइल बदलें",
+    "join-date":"अक्तूबर 2023 में शामिल हुए",
+    "followers":" फ़ॉलोअर",
+    "following2":"फ़ॉलोइंग",
+    "save":"सहेजें",
+    "name":"नाम",
+    "bio":"परिचय",
+    "location":"स्थान",
+    "select-avatar":"Select Avatar",
+    "delete":"डिलीट",
+    "select-language":"भाषा चुनें",
+    "trends":"आपके लिए",
+    "trendingI":"भारत में रुझान में",
+    "trendingB":"Trending in Business & finance",
+    "entertainment":"मनोरंजन",
+    "sports":"खेल",
+    "trending":"रुझान में",
+    "comments":"टिप्पणियाँ"
+
+}

@@ -2,17 +2,42 @@ import React, { useContext, useEffect, useState } from 'react'
 import './FollowProfile.css'
 import { Avatar, Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import { profileContext } from '../../Context/Context'
+import { followContext, loggedInUserContext, profileContext } from '../../Context/Context'
+import { useTranslation } from 'react-i18next'
 
 const FollowProfile = ({ data }) => {
 
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const profile = useContext(profileContext);
+  const userValue=useContext(loggedInUserContext)
+  const loggedInUser = userValue.loggedInUser;
+  const followStatus = useContext(followContext);
+  const [followS,setFollowS]=useState('false')
+
+  const [friends,setFriends]=useState({})
   
    const openProfile = () => {
       profile.setProfile(data);
       navigate('profile')
-   }
+  }
+  
+  useEffect(() => {
+
+      const email = loggedInUser.email;
+      fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
+      .then(res => res.json())
+      .then(d => {
+        setFriends(d[0]);
+           
+        if (friends.following.includes(data._id))
+          setFollowS('true')
+        else
+          setFollowS('false')
+      })
+    
+  }, [followStatus.follow,data]);
 
     return (
       <div>
@@ -33,9 +58,12 @@ const FollowProfile = ({ data }) => {
                 </div>
                     
          </div>
-          
-          <input type='button' value='Follow' className="follow-btn"></input>
-      
+          {
+            followS === 'true' ?
+              <input type='button' value={t("following")} className="following-btn" onClick={openProfile}></input>:
+              <input type='button' value={t("follow")} className="follow-btn" onClick={openProfile}></input>
+          }
+
             </div>
             </div>
   )

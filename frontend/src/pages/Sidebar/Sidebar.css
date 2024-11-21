@@ -2,8 +2,10 @@
     padding-left:44px;
     border-right:1.5px solid rgb(202, 199, 199);
     height:100vh;
-    width:23vw;
+    width:auto;
     overflow-y: auto;
+    background-color: white;
+    padding-right: 50px;
    
     /* margin-right: 0; */
     
@@ -13,10 +15,11 @@
     display:none;
 }
 
-.Twitter-icon {
+.sidebar-icon {
     margin-top: 7px;
     margin-left: 18px;
-    color:rgb(56, 189, 241)
+    color:rgb(56, 189, 241);
+    font-size: 30px;
 }
 
 .Tweet-btn {
@@ -42,9 +45,10 @@
     /* position:absolute;
     bottom:20px;
     left:54px; */
-    margin-top:70px;
+    /* margin-top:70px; */
+    position: absolute;
     margin-left:15px;
-    margin-bottom: 20px;
+    bottom: 5%;
     
     /* align-items: center; */
 }
@@ -87,8 +91,75 @@
     object-fit: cover;
 }
 
-@media only screen and (max-width: 680px) {
+/* @media only screen and (max-width: 680px) {
     .sidebar {
+        display:none;
+    }
+} */
+
+@media only screen and (max-width: 1200px) and (min-width:900px) {
+
+    .Tweet-btn {
+        font-size: 15px;
+        padding:8px 65px;
+
+    }
+
+    .sidebar {
+        /* width:auto; */
+        padding-left:3px;
+        padding-right: 20px;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width:600px) {
+    .sidebar-user {
+        display:none;
+    }
+
+    .sidebar {
+        width:auto;
+        padding-left:4px;
+        padding-right: 6px;
+    }
+
+    .Tweet-btn {
+        display:none;
+    }
+
+    .profile-more {
+        position: relative;
+        top: -44px;
+        right:55px;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .Profile-info {
+        display:none;
+    }
+
+    .sidebar-icon {
+        display:none;
+    }
+
+    .sidebar {
+        position: absolute;
+        bottom:0%;
+        display:flex;
+        justify-content: space-around;
+        width:100vw;
+        height:6vh;
+        background-color:rgba(65, 173, 216, 0.37) ;
+        overflow-x: hidden; 
+        padding: 0; 
+        box-sizing: border-box;
+        /* display: none; */
+    }
+
+    .Tweet-btn {
         display:none;
     }
 }

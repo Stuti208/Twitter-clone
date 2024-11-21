@@ -1,5 +1,5 @@
 // import React, { useState } from 'react'
-import twitterImage from '../../assets/images/twitter.jpeg';
+import twitterImage from '../../assets/images/twitter2.jpg';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import './Login.css';
 import axios from 'axios';
@@ -54,10 +54,13 @@ const LoginHomePage = () => {
           <img src={twitterImage} alt="Twitter-image" />
         </div>
         <div className="form-container">
-          <TwitterIcon className="Twitter-icon" style={{ fontSize: '37px' }} />
+          <div className="Twitter-icon-container">
+              <TwitterIcon className="Twitter-icon" style={{ fontSize: '55px' }} />
+          </div>
           <h1 className="heading-1">Happening now</h1>
           <h1 className="heading-2">Join Twitter today</h1>
 
+          <div className="btn-container">
           <div className="google-button">
             <GoogleButton
               className="g-button"
@@ -65,8 +68,8 @@ const LoginHomePage = () => {
               style={{
                 borderRadius: '30px',
                 paddingLeft: '15px',
-                marginTop: '40px',
-                marginLeft: '80px',
+                marginTop: '10%',
+                marginLeft: '14%',
                 size: 'larger',
                 shape: 'rectangular',
                 width: '280px',
@@ -86,6 +89,7 @@ const LoginHomePage = () => {
               Sign in with phone or email
             </Link>
           </button>
+          </div>
 
           <div className="login-class">
             Already have an account?

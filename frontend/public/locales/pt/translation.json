@@ -1,0 +1,60 @@
+{
+    "component1":"Página Inicial",
+    "component2":"Explorar",
+    "component3":"Notificações",
+    "component4":"Mensagens",
+    "component5":"Itens salvos",
+    "component6":"Comunidades",
+    "component7":"Perfil",
+    "component8":"Configurações",
+    "tweet":"Tweet",
+    "tweets":"Tweets",
+    "follow":"Seguir",
+    "following":"Seguindo",
+    "header":"O que está acontecendo",
+    "search-bar":"Buscar",
+    "existing-account":"Adicionar uma conta existente",
+    "logout":"Sair de",
+    "notification":{
+        "line1":"Nada para ver aqui.",
+        "line2":"Ainda.",
+        "line3":"De curtidas a reposts e muito mais. É onde",
+        "line4":"tudo acontece."
+    },
+    "messages":{
+        "line1":"Receba as boas-vindas à sua caixa",
+        "line2":"de entrada!",
+        "line3":"Escreva, compartilhe posts e muito mais com conversas ",
+        "line4":"privadas entre você e outras pessoas no Twitter."
+    },
+    "msg-btn":"Escrever uma mensagem",
+    "bookmark":{
+        "line1":"Salvar posts para depois",
+        "line2":"Salve os posts para encontrá-los com facilidade",
+        "line3":"posteriormente."
+    },
+    "communities":{
+        "line1":"No Comunidades yet--"
+    },
+    "posts":"posts",
+    "enable-notification":"Enable Notifications",
+    "edit-profile":"Editar perfil",
+    "join-date":"Ingressou em julho de 2024",
+    "followers":" Seguidor",
+    "following2":"Seguindo",
+    "save":"Salvar",
+    "name":"Nome",
+    "bio":"Bio",
+    "location":"Localização",
+    "select-avatar":"Select Avatar",
+    "delete":"DELETE",
+    "select-language":"Selecione o idioma",
+    "trends":"Para você",
+    "trendingI":"Assunto do Momento em Índia",
+    "trendingB":"Trending in Business & finance",
+    "entertainment":"Entretenimento",
+    "sports":"Esportes ",
+    "trending":"Assunto do Momento",
+    "comments":"Comentários"
+
+}

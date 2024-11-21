@@ -19,11 +19,14 @@ import Messages from './pages/Messages/Messages.jsx';
 import Bookmarks from './pages/Bookmarks/Bookmarks.jsx';
 import Communities from './pages/Communities/Communities.jsx';
 import Profile from './pages/Profile/Profile.jsx';
-import More from './pages/More/More.jsx';
+import More from './pages/Settings/Settings.jsx';
 import ForgetPassword from './pages/Login/ForgetPassword.jsx';
 import SetPassword from './pages/Login/SetPassword.jsx';
 // import OthersProfile from './pages/Widgets/OthersProfile.jsx';
 import {profileContext} from './Context/Context';
+import Settings from './pages/Settings/Settings.jsx';
+import Cancel from './pages/Cancel.jsx';
+import Success from './pages/Success.jsx';
 
 
 
@@ -77,13 +80,23 @@ function App() {
         { path: 'bookmark', element: <Bookmarks /> },    
         { path: 'communities', element: <Communities /> },   
         { path: 'profile', element: <Profile /> },            
-        { path: 'more', element:<More/> },
+        { path: 'settings', element:<Settings/> },
       ],
     },
 
     {
       path: "/page-loading",
       element: <PageLoading/>
+    },
+
+    {
+      path: "/cancel",
+      element: <Cancel/>
+    },
+
+    {
+      path: "/success",
+      element: <Success/>
     },
   ]);
 

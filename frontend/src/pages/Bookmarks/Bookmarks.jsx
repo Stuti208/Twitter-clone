@@ -4,8 +4,11 @@ import './Bookmark.css'
 import { postStatusContext,loggedInUserContext, bookmarkStatusContext } from '../../Context/Context';
 import UserPost from '../Feed/UserPost/UserPost';
 import axios from 'axios'
+import { useTranslation } from 'react-i18next';
 
 const Bookmarks = () => {
+  const { t } = useTranslation();
+  const { line1, line2, line3 } = t("bookmark");
 
   const [userPosts, setUserPosts] = useState([]);
   const postValue = useContext(postStatusContext);
@@ -33,13 +36,13 @@ const Bookmarks = () => {
     <div className='feed-page'>
 
       <div className="bookmark-header">
-        <h2>Bookmark</h2>
+        <h2>{ t("component5")}</h2>
         <p>@{loggedInUser.username}</p>
       </div>
 
       <div className="bookmark-content" style={{display:userPosts.length===0?'block':'none'}}>
-            <h1>Save posts for later</h1>
-            <p>Bookmark posts to easily find them again in the<br/> future.</p>
+            <h1>{ line1}</h1>
+            <p>{ line2}<br/>{ line3}</p>
       </div>
 
       {

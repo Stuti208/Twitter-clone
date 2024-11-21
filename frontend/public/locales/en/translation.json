@@ -1,0 +1,60 @@
+{
+    "component1":"Home",
+    "component2":"Explore",
+    "component3":"Notifications",
+    "component4":"Messages",
+    "component5":"Bookmarks",
+    "component6":"Communities",
+    "component7":"Profile",
+    "component8":"Settings",
+    "tweet":"Tweet",
+    "tweets":"Tweets",
+    "follow":"Follow",
+    "following":"Following",
+    "header":"What's happening",
+    "search-bar":"Search",
+    "existing-account":"Add an existing account",
+    "logout":"Log out",
+    "notification":{
+        "line1":"Nothing to see here",
+        "line2":"— yet",
+        "line3":"From likes to reposts and a whole lot more, this",
+        "line4":"is where all the action happens."
+    },
+    "messages":{
+        "line1":"Welcome to your",
+        "line2":"inbox!",
+        "line3":"Drop a line, share posts and more with private",
+        "line4":"conversations between you and others on Twitter."
+    },
+    "msg-btn":"Write a message",
+    "bookmark":{
+        "line1":"Save posts for later",
+        "line2":"Bookmark posts to easily find them again in the",
+        "line3":"future."
+    },
+    "communities":{
+        "line1":"No Communities yet--"
+    },
+    "posts":"posts",
+    "enable-notification":"Enable Notifications",
+    "edit-profile":"Edit Profile",
+    "join-date":"Joined July 2024",
+    "followers":"Followers",
+    "following2":"Following",
+    "save":"Save",
+    "name":"Name",
+    "bio":"Bio",
+    "location":"Location",
+    "select-avatar":"Select Avatar",
+    "delete":"DELETE",
+    "select-language":"Select Language",
+    "trends":"Trends for you",
+    "trendingI":"Trending in India",
+    "trendingB":"Trending in Business & finance",
+    "entertainment":"Entertainment",
+    "sports":"Sports",
+    "trending":"Trending",
+    "comments":"Comments"
+      
+}

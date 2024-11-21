@@ -1,0 +1,59 @@
+{
+    "component1":"主页",
+    "component2":"探",
+    "component3":"通知",
+    "component4":"私信",
+    "component5":"书签",
+    "component6":"社群",
+    "component7":"个人资料",
+    "component8":"设置和隐私",
+    "tweet":"发帖",
+    "follow":"关注",
+    "following":"正在关注",
+    "header":"有什么新鲜事？",
+    "search-bar":"搜索",
+    "existing-account":"添加已有账号",
+    "logout":"登出",
+    "notification":{
+        "line1":"这里暂时没有",
+        "line2":"内容",
+        "line3":"从点赞到转帖等等",
+        "line4":"所有互动都在这里进行。"
+    },
+    "messages":{
+        "line1":"欢迎来到你的收",
+        "line2":"件箱！",
+        "line3":"在 X 上和别人进行私密对话",
+        "line4":"大家互发私信、分享帖子等。 "
+    },
+    "msg-btn":"写一封私信",
+    "bookmark":{
+        "line1":"保存帖子以备后用",
+        "line2":"把帖子加入书签",
+        "line3":"以便将来再次找到它们。"
+    },
+    "communities":{
+        "line1":"还没有社区"
+    },
+    "posts":"帖子",
+    "enable-notification":"启用通知",
+    "edit-profile":"编辑个人资料",
+    "join-date":"2024年7月 加入",
+    "followers":" 关注者",
+    "following2":"正在关注",
+    "save":"保存",
+    "name":"全名",
+    "bio":"简介",
+    "location":"位置",
+    "select-avatar":"选择头像",
+    "delete":"删除",
+    "select-language":"选择语言",
+    "trends":"为你推荐的趋势",
+    "trendingI":"印度 的趋势",
+    "trendingB":"印度 的趋势",
+    "entertainment":"娱乐",
+    "sports":"体育",
+    "trending":"印度 的趋势",
+    "comments":"评论"
+
+}

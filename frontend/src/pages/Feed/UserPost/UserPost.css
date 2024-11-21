@@ -58,6 +58,7 @@
     padding-left: 90px;
     margin-bottom:10px;
     gap:80px;
+    flex-wrap: nowrap;
 }
 
 .userpost-profileimage {
@@ -68,4 +69,92 @@
     float:left;
     margin-top: 1px;
     margin-right:8px ;
+}
+
+.comment-container {
+    
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width:40%;
+    height: 65%;
+    background-color:white;
+    border-radius: 25px;  
+    box-shadow:0px 0px 10px grey;
+      
+}
+
+.send-comment {
+    position: relative;
+    top: 62%;
+    left:3%;
+    display: flex;
+}
+
+.display-comment {
+    position: relative;
+    top: 4px;
+    left: 0px;
+    padding-bottom: 4px; 
+}
+
+.bookmark-icon {
+    position:relative;
+    right: -25%;
+    margin-top:-3px;
+}
+
+
+@media only screen and (max-width: 1200px) and (min-width:900px) {
+    .comment-container {
+        width:45%;
+        height:55%;
+    }
+
+    .bookmark-icon {
+        right:0%;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width:700px) {
+    .comment-container {
+        width:60%;
+        height:50%;
+        top: 25%;
+        left: 21%;
+    }
+
+    .bookmark-icon {
+        right:10%;
+    }
+}
+
+@media only screen and (max-width: 700px) and (min-width:600px) {
+    .comment-container {
+        width:60%;
+        height:50%;
+        top: 25%;
+        left: 21%;
+    }
+
+    .bookmark-icon {
+        right:-8%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .comment-container {
+        width:70%;
+        height:50%;
+        top: 25%;
+        left: 18%;
+    }
+
+    .post-footer {
+        padding-left: 50px;
+    }
+
+    .bookmark-icon {
+        right:5%;
+    }
 }

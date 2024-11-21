@@ -5,8 +5,11 @@ import Tweet_box from './Tweet_box/Tweet_box.jsx'
 import UserPost from './UserPost/UserPost.jsx'
 import { bookmarkStatusContext, likeStatusContext, notificationsEnabledContext, postStatusContext, profileImageContext } from '../../Context/Context'
 import axios from 'axios'
+import { useTranslation } from 'react-i18next'
 
 const Feed = () => {
+
+  const { t } = useTranslation();
 
   const [posts, setPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
@@ -16,8 +19,8 @@ const Feed = () => {
   const likeValue = useContext(likeStatusContext);
   const notificationStatus = useContext(notificationsEnabledContext);
   // const [bookmarkStatus, setBookmarkStatus] = useState(post.bookmark?post.bookmark:'false');
-
-
+  // const [videos, setVideos] = useState([]); 
+  let videos = [];
 
   // const changePostStatus = () => {
   //   if (postStatus)
@@ -35,7 +38,13 @@ const Feed = () => {
       .then(async (data) => {
          setPosts(data);
          console.log(data)
+
+         posts.map((post) => {
+          post.video && videos.push(post.video)
+        })
       })
+    
+    
     
   }, [postValue.postStatus,bookmarkValue.bookmarkStatus,likeValue.likeStatus,value.profileImage]);
 
@@ -64,7 +73,7 @@ const Feed = () => {
 
 
   const tweetContainsKeywords = (tweet) => {
-    if (tweet) {
+    if (tweet && tweet.post) {
       const lowerCaseTweet = tweet.post.toLowerCase();
       return lowerCaseTweet.includes('cricket') && lowerCaseTweet.includes('science');
     }
@@ -76,7 +85,7 @@ const Feed = () => {
       if (Notification.permission === 'granted') {
           new Notification('New Tweet Notification', {
               body: tweet.post,
-              icon: tweet.image // You can add a custom icon for the notification
+              icon: tweet.image 
           });
       } else {
           console.log('Notification permission is not granted.');
@@ -94,12 +103,15 @@ const Feed = () => {
       {/* <bookmarkStatusContext.Provider value={{bookmarkStatus,setBookmarkStatus,toggleBookmarkStatus}}> */}
     
         <div className='feed-page'>
-          <h3>Home</h3>
+        <h3>{ t("component1")}</h3>
           <Tweet_box  />
           {
             posts.slice().reverse().map(post => {
-                console.log(post)
-              return <UserPost key={post._id} post={post} setPosts={setPosts}  />
+              console.log(post)
+              // post.video && setVideos([...videos, post.video]);
+              // post.video && videos.push(post.video);
+              console.log(videos)
+              return <UserPost key={post._id} post={post} setPosts={setPosts} videos={videos} />
             })
           }
           

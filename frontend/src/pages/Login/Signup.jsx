@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import twitterImage from "../../assets/images/twitter.jpeg";
+import twitterImage from "../../assets/images/twitter2.jpg";
 import TwitterIcon from '@mui/icons-material/Twitter';
 import './Login.css';
 import auth from '../../firebase.init.js'
@@ -18,7 +18,8 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
-  const [passType,setPassType]=useState('password')
+  const [passType, setPassType] = useState('password')
+  const [msg, setMsg] = useState("");
 
 
   const [
@@ -73,7 +74,11 @@ const Signup = () => {
   const handleSubmit = async(e) => {
       e.preventDefault();
       console.log(email);
-     console.log(password);
+      console.log(password);
+    if (password.length < 8) {
+      setMsg("Password should be at least 8 characters");
+      return;
+    }
     
     try {
       await createUserWithEmailAndPassword(email, password);
@@ -111,6 +116,7 @@ const Signup = () => {
     }
     catch (error) {
       console.log(error);
+      alert("Something went wrong!!, Please try again.")
     }
   }
     
@@ -122,9 +128,9 @@ const Signup = () => {
         <img src={twitterImage} alt="Twitter-image"/>
       </div>
       <div className="form-container">
-        <TwitterIcon className='Twitter-icon'
-                  style={{ fontSize:'37px'}}/>
-        <h1 className="heading-1">Happening now</h1>
+        {/* <TwitterIcon className='Twitter-icon'
+                  style={{ fontSize:'37px'}}/> */}
+        <h1 className="signup-form-heading">Happening now</h1>
         <h1 className="heading-2">Sign in to Twitter</h1>
 
         <form className='form' onSubmit={handleSubmit}>  
@@ -134,14 +140,14 @@ const Signup = () => {
             placeholder='Name'
             onChange={(e) => { setName(e.target.value) }}
             style={{ color: 'black' }}
-            required></input>         
+            required></input> <br/>        
 
        <input type="text"
             className='display-username form-option'
             placeholder='@username'
             onChange={(e) => { setUsername(e.target.value) }}
             style={{ color: 'black' }}
-            required></input>
+            required></input><br/>
                        
           <input type="email"
             className='form-option'
@@ -150,11 +156,12 @@ const Signup = () => {
               style={{ color: 'black' }}
             required></input>
           
+            <p style={{color:'red',marginLeft:'5px'}}>{msg}</p>
           <input type={passType}
             className='password form-option'
             value={password}
             placeholder='Password'
-            onChange={(e) => { setPassword(e.target.value) }}
+              onChange={(e) => { setPassword(e.target.value);setMsg("") }}
               style={{ color: 'black' }}
             required></input>
             

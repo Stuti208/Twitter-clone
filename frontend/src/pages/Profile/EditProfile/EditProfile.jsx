@@ -9,11 +9,16 @@ import { editStatusContext, loggedInUserContext,postStatusContext, profileImageC
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import CustomAvatar from '../CustomAvatar';
+import { useTranslation } from 'react-i18next'
+
 // import DatePicker from "react-date-picker";
 // import 'react-datepicker/dist/react-datepicker.css'
 
 
 const EditProfile = () => {
+
+  const { t } = useTranslation();
+
   
   const style = {
     position: 'absolute',
@@ -178,7 +183,7 @@ const EditProfile = () => {
   return (
 
       <div>
-      <button className='editProfile-btn' onClick={() => setOpen(true)}>Edit Profile</button>
+      <button className='editProfile-btn' onClick={() => setOpen(true)}>{ t("edit-profile")}</button>
       
       <Modal
         open={open}
@@ -196,21 +201,21 @@ const EditProfile = () => {
                 </CloseIcon>
             </IconButton>
             
-            <h2 className='editpage-heading'>Edit Profile</h2>
+            <h2 className='editpage-heading'>{ t("edit-profile")}</h2>
 
-            <button className='editpage-savebtn' onClick={handleSave}> Save</button>
+            <button className='editpage-savebtn' onClick={handleSave}>{ t("save")}</button>
           </div>
 
           <div className="fill-content">
-            <TextField className='textfield' label='Name' variant='filled'
+            <TextField className='textfield' label={ t("name")} variant='filled'
               onChange={(e) => setName(e.target.value)} defaultValue={loggedInUser.name}
               style={{ width: '93%', marginLeft: '15px',border:'1px solid grey'}} />
             
-            <TextField className='textfield' label='Bio' variant='filled'
+            <TextField className='textfield' label={ t("bio")} variant='filled'
               onChange={(e) => setBio(e.target.value)} defaultValue={loggedInUser.bio?loggedInUser.bio:''}
               style={{ width:'93%', marginLeft:'15px',marginTop:'25px', border:'1px solid grey' }} />
             
-            <TextField className='textfield' label='Location' variant='filled'
+            <TextField className='textfield' label={ t("location")} variant='filled'
               onChange={(e) => setLocation(e.target.value)} defaultValue={loggedInUser.location?loggedInUser.location:''}
               style={{ width: '93%', marginLeft: '15px',marginTop:'25px',border:'1px solid grey' }} />
             
@@ -219,7 +224,7 @@ const EditProfile = () => {
                /> */}
           </div>
 
-          <input type='button' value='Select Avatar' onClick={openAvatar} className='avatar-btn'></input>
+          <input type='button' value={ t("select-avatar")} onClick={openAvatar} className='avatar-btn'></input>
           
           {/* <div className="birthdate-section">
             <p>Birth date</p>
@@ -247,7 +252,7 @@ const EditProfile = () => {
             </IconButton>
             
 
-            <button className='editpage-savebtn savebutton' onClick={handleSave1}> Save</button>
+            <button className='editpage-savebtn savebutton' onClick={handleSave1}>{ t("save")}</button>
           </div>
    
           <div className="avatar-container" style={{ display: 'flex' ,flexWrap:'wrap'}}>

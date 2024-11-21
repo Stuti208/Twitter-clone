@@ -4,9 +4,11 @@ import './Widgets.css'
 import { TwitterTimelineEmbed,TwitterTweetEmbed } from 'react-twitter-embed';
 import FollowProfile from './FollowProfile';
 import useLoggedInUser from '../../hooks/useLoggedInUser';
+import { useTranslation } from 'react-i18next';
 
 const Widgets = () => {
 
+  const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [userData, setUserData] = useState('');
   const [loggedInUser, setLoggedInUser] = useLoggedInUser({});
@@ -32,14 +34,14 @@ const Widgets = () => {
           position:'relative',top:'0px',left:'40px'}} />
         <input
           type='text'
-          placeholder='Search Twitter'
+          placeholder={ t("search-bar")}
           value={search}
           onChange={e=> setSearch(e.target.value)} />
       </div>
 
       
       <div className="widgets-heading">
-          <h2>What's happening</h2>
+          <h2>{ t("header")}</h2>
       </div>
 
       {

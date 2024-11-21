@@ -13,6 +13,19 @@
     margin-left: 40px;
 }
 
+.following-btn {
+    color:black;
+    background-color: white;
+    position: relative;
+    right:5%;
+    padding:1px 16px;
+    width:99px;
+    height:33px;
+    border-radius:20px;
+    border:1px solid rgb(184, 180, 180);
+    font-size: 17px;
+}
+
 .profile-section {
     display: flex;
     gap: 15px;
@@ -30,6 +43,8 @@
 }
 
 .follow-btn {
+    position: relative;
+    right:5%;
     padding:1px 20px;
     width:95px;
     height:33px;
@@ -42,4 +57,50 @@
     right:; */
     /* justify-self:center;
     align-self: center; */
+}
+
+@media only screen and (max-width: 1300px) and (min-width:1100px) {
+    .follow-btn {
+        right:-5%;
+    }
+}
+
+
+@media only screen and (max-width: 1100px) and (min-width:900px) {
+
+    .follow_container {
+        width:85%;
+    }
+
+    .follow-btn {
+        padding:1px 16px;
+        width:80px;
+        height:29px;
+        font-size: 16px;
+        right:0%;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width:600px) {
+
+    .follow_container {
+        width:85%;
+    }
+
+    .follow-btn {
+        padding:1px 16px;
+        width:75px;
+        height:26px;
+        font-size: 14px;
+        right:2%;
+    }
+
+    .info button h4 {
+        font-size: 13px;
+    }
+
+    .info h5 {
+        font-size: 12px;
+
+    }
 }

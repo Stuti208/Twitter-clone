@@ -79,7 +79,7 @@ const ForgetPassword = () => {
 
 
   const actionCodeSettings = {
-    url: 'http://localhost:5175/login',
+    url: 'https://twitter-twitter-clone.netlify.app//login',
   };
 
   if (error) {

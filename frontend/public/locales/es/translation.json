@@ -1,0 +1,60 @@
+{
+    "component1":"Inicio",
+    "component2":"Explorar",
+    "component3":"Notificaciones",
+    "component4":"Mensajes",
+    "component5":"Guardados",
+    "component6":"Comunidades",
+    "component7":"Perfil",
+    "component8":"Configuración",
+    "tweet":"Postear",
+    "tweets":"Postear",
+    "follow":"Seguir",
+    "following":"Siguiendo",
+    "header":"Qué está pasando",
+    "search-bar":"Buscar",
+    "existing-account":"Agregar una cuenta existen",
+    "logout":"Cerrar la sesión de",
+    "notification":{
+        "line1":"No hay nada que ver",
+        "line2":"aquí. Por ahora.",
+        "line3":"Desde los Me gusta hasta los reposts y mucho ",
+        "line4":"más: aquí es donde transcurre toda la acción."
+    },
+    "messages":{
+        "line1":"¡Te damos la bienvenida a tu ",
+        "line2":"bandeja de entrada!",
+        "line3":"Envía una frase, comparte posts y mucho más con las",
+        "line4":"conversaciones privadas entre tú y otras personas en X. "
+    },
+    "msg-btn":"Escribir un mensaje",
+    "bookmark":{
+        "line1":"Guardar posts para leerlos en otro momento",
+        "line2":"Guarda los posts para luego encontrarlos",
+        "line3":"fácilmente."
+    },
+    "communities":{
+        "line1":"Aún no hay comunidades"
+    },
+    "posts":"posts",
+    "enable-notification":"Enable Notifications",
+    "edit-profile":"Editar perfil",
+    "join-date":"Se unió el julio de 2024",
+    "followers":"Seguidores",
+    "following2":"Siguiendo",
+    "save":"Guardar",
+    "name":"Nombre",
+    "bio":"Biografía",
+    "location":"Ubicación",
+    "select-avatar":"Select Avatar",
+    "delete":"DELETE",
+    "select-language":"Seleccionar idioma",
+    "trends":"Tendencias para ti",
+    "trendingI":"Tendencia en India",
+    "trendingB":"Tendencia in Business & finance",
+    "entertainment":"Entretenimiento",
+    "sports":"Deportes",
+    "trending":"Tendencia",
+    "comments":"Comentarios"
+
+}

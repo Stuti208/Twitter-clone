@@ -1,0 +1,59 @@
+{
+    "component1":"Accueil",
+    "component2":"Explorer",
+    "component3":"Notifications",
+    "component4":"Messages",
+    "component5":"Signets",
+    "component6":"Communautés",
+    "component7":"Profil",
+    "component8":"Paramètres",
+    "tweet":"Tweet",
+    "tweets":"Tweets",
+    "follow":"Suivre",
+    "following":"Abonné",
+    "header":"Quoi de neuf ?!",
+    "search-bar":"Chercher",
+    "existing-account":"Ajouter un compte existant",
+    "logout":"Se déconnecter de",
+    "notification":{
+        "line1":"Rien à voir ici. Pour le",
+        "line2":"moment.",
+        "line3":"J'aime, reposts et bien plus encore... c'est ici que",
+        "line4":"ça se passe !"
+    },
+    "messages":{
+        "line1":"Bienvenue dans votre boîte",
+        "line2":"de réception !",
+        "line3":"Écrivez un mot, et partagez des posts et plus encore dans",
+        "line4":"des conversations privées entre vous et d'autres utilisateurs de"
+    },
+    "msg-btn":"Écrire un message",
+    "bookmark":{
+        "line1":"Enregistrer des posts pour plus tard",
+        "line2":"Ajoutez les posts aux signets pour les retrouver",
+        "line3":"facilement à l'avenir."
+    },
+    "communities":{
+        "line1":"No Communautés yet--"
+    },
+    "posts":"post",
+    "enable-notification":"Enable Notifications",
+    "edit-profile":"Éditer le profil",
+    "join-date":"A rejoint Twitter en juillet 2024",
+    "followers":"abonné",
+    "following2":"abonnements",
+    "save":"Enregistrer",
+    "name":"Nom",
+    "bio":"Bio",
+    "location":"Localisation",
+    "select-avatar":"Select Avatar",
+    "delete":"DELETE",
+    "select-language":"Choisissez la langue",
+    "trends":"Pour vous",
+    "trendingI":"Tendance dans la catégorie Inde",
+    "trendingB":"Trending in Business & finance",
+    "entertainment":"Divertissement",
+    "sports":"Sports",
+    "trending":"Tendances",
+    "comments":"Commentaires"
+}

@@ -14,11 +14,14 @@ import UserPost from '../../Feed/UserPost/UserPost.jsx'
 import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkStatusContext, likeStatusContext, notificationsEnabledContext, followContext} from '../../../Context/Context';
 import EditProfile from '../EditProfile/EditProfile';
 import Form from 'react-bootstrap/Form';
+import { useTranslation } from 'react-i18next'
+
 // import axios from 'axios'
 
 
 const MainPage = ({loggedInUser,setLoggedInUser}) => {
   
+  const { t } = useTranslation();
   const [userPosts, setUserPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
   const [coverImage, setCoverImage] = useState();
@@ -76,6 +79,16 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
 
 
   useEffect(() => {
+
+    const targ_email = loggedInUser.email;
+    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${targ_email}`)
+      .then(res => res.json())
+      .then(data => {
+        setTargetFriends(data[0])
+        console.log(targetfriends)
+      })
+    
+    
     const email = user[0].email;
 
     fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${email}`)
@@ -88,16 +101,8 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
         else
           followStatus.setFollow('false')
       })
-    
-    const targ_email = loggedInUser.email;
-    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUserFriends?email=${loggedInUser.email}`)
-      .then(res => res.json())
-      .then(data => {
-        setTargetFriends(data[0])
-      })
            
-    
-      }, [loggedInUser]);
+      }, [loggedInUser,user]);
 
     // const changePostStatus = () => {
     //   if (postStatus)
@@ -196,10 +201,10 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
 
     const handleFollow = async () => {
 
-      if (followStatus.follow === 'true')
-        followStatus.setFollow('false')
-      else
-        followStatus.setFollow('true')
+      // if (followStatus.follow == 'true')
+      //   followStatus.setFollow('false')
+      // else
+      //   followStatus.setFollow('true')
 
       const email = user[0].email;
 
@@ -207,65 +212,121 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
         .then(res => res.json())
         .then(data => {
           setUserData(data[0]);
-          console.log(data[0])
+          // console.log(data[0])
         })
+      
+        // console.log(friends);
+        // console.log(targetfriends);
 
     
-      if (followStatus.follow === 'true') {
-          
-        console.log(friends);
-        console.log(targetfriends);
+      if (followStatus.follow === 'false') {
 
-        friends.following = friends.following.push(loggedInUser._id)
-        friends.Fname=friends.Fname.push(loggedInUser.name)
+        
 
-        const user1Profile = {
-          following:  friends.following,
-          Fname: friends.Fname
+        let friends_following = '';
+        let friends_Fname = '';
+
+        if (friends && friends.following) {
+          loggedInUser && friends.following.push(loggedInUser._id);
+          loggedInUser && friends.Fname.push(loggedInUser.name);
+ 
+          friends_following = friends.following;
+          friends_Fname=friends.Fname
+        }
+
+        else {
+          friends_following = loggedInUser && [loggedInUser._id];
+          friends_Fname = loggedInUser && [loggedInUser.name];
         }
           
+        // friends.following ? friends.following.push(loggedInUser._id) : friends = { following=[loggedInUser._id] }
+        // friends.Fname ? friends.Fname.push(loggedInUser.name) :friends_Fname = [loggedInUser.name]
+        
+        // console.log(friends.following);
+        // console.log(friends.Fname);
+
+        const user1Profile = {
+          following:  friends_following,
+          Fname: friends_Fname
+        }
+          
+        userData && userData._id &&
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
           .then(res => console.log(res))
         
         
-        targetfriends.followers = targetfriends.followers.push(userData._id);
-        targetfriends.fname = targetfriends.fname.push(userData.name)
+        let targ_followers = '';
+        let targ_fname = '';
+
+        if (targetfriends && targetfriends.followers) {
+          userData && targetfriends.followers.push(userData._id);
+          userData && targetfriends.fname.push(userData.name);
+  
+          targ_followers = targetfriends.followers;
+          targ_fname = targetfriends.fname;
+        }
+
+        else {
+          targ_followers = userData && [userData._id];
+          targ_fname = userData &&[userData.name];
+        }
+        
+        // targetfriends.followers?targetfriends.followers.push(userData._id):targetfriends.followers=[userData._id]
+        // targetfriends.fname?targetfriends.fname.push(userData.name):targetfriends.fname=[userData.name]
+
+        // console.log(targetfriends.followers);
+        // console.log(targetfriends.fname);
         
         const user2Profile = {
-          followers: targetfriends.followers,
-          fname: targetfriends.fname
+          followers: targ_followers,
+          fname: targ_fname
         }
           
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
           .then(res => console.log(res))
+        
+          followStatus.setFollow('true')
       }
 
       else {
 
-        friends.following = friends.following.remove(loggedInUser._id)
-        friends.Fname=friends.Fname.remove(loggedInUser.name)
+       
+
+        const friends_following = friends.following.filter(item => { return item !== loggedInUser._id }); 
+        const friends_Fname = friends.Fname.filter(item => { return item !== loggedInUser.name } ); 
+        // friends.following=friends.following.remove(loggedInUser._id)
+        // friends.Fname=friends.Fname.remove(loggedInUser.name)
 
         const user1Profile = {
-          following:  friends.following,
-          Fname: friends.Fname
+          following:  friends_following,
+          Fname: friends_Fname
         }
       
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${userData._id}`, user1Profile)
           .then(res => console.log(res))
+        
+        const targ_followers = targetfriends.followers.filter(item => {return item !== userData._id }); 
+        const targ_fname = targetfriends.fname.filter(item => { return item !== userData.name } );
     
-        targetfriends.followers = targetfriends.followers.remove(userData._id);
-        targetfriends.fname = targetfriends.fname.remove(userData.name)
+        // targetfriends.followers = targetfriends.followers.remove(userData._id);
+        // targetfriends.fname = targetfriends.fname.remove(userData.name)
         
         const user2Profile = {
-          followers: targetfriends.followers,
-          fname: targetfriends.fname
+          followers: targ_followers,
+          fname: targ_fname
         }
       
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
           .then(res => console.log(res))
+        
+          followStatus.setFollow('false')
+       
       }
 
       console.log(followStatus.follow)
+
+      
+
 
     }
 
@@ -288,19 +349,19 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
               <div className="header-container">
                 <div className="header-info">
                   <h2>{loggedInUser.name}</h2>
-                  <p>{userPosts.length} posts</p>
+                  <p>{userPosts.length} {t("posts")}</p>
                 </div>
    
                 {
                   user && user[0].email === loggedInUser.email &&
                   (
                     <label>
-                      <input style={{ scale: '1.4', marginRight: '10px' }}
+                      <input style={{ scale: '1.4', position:'relative', right: '10%' }}
                         type="checkbox"
                         checked={notificationStatus.notificationsEnabled}
                         onChange={toggleNotifications}
                       />
-                      Enable Notifications
+                     {t("enable-notification")}
                     </label>
                   )
                 }
@@ -338,8 +399,8 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
             {user && user[0].email === loggedInUser.email ?
               <EditProfile loggedInUser={loggedInUser} /> :
               <input type='button'
-                value={followStatus.follow === 'false' ? 'Follow' : 'Following'}
-                className={followStatus.follow === 'false' ? `editProfile-btn fbtn` : `editProfile-btn`}
+                value={followStatus.follow == 'false' ?  t("follow") :  t("following")}
+                className={followStatus.follow == 'false' ? `editProfile-btn fbtn` : `editProfile-btn`}
                 onClick={handleFollow}></input>
             }
 
@@ -389,13 +450,35 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
         
               <div className="joiningDate" >
                 <CalendarMonthIcon style={{ scale: '0.9' }} />
-                <p>Joined July 2024</p>
+                <p>{ t("join-date")}</p>
+              </div>
+            </div>
+
+            <div className="followers-container">
+              <div className="following">
+              
+                  {
+                    targetfriends && targetfriends.following ?
+                      ( <p>{targetfriends.following.length}</p> ) :
+                      ( <p>0</p> )
+                  }
+                
+                <p className='follow-color'>{ t("following2")}</p>
+              </div>
+
+              <div className="follow">
+                 {
+                    targetfriends && targetfriends.followers ?
+                      ( <p>{targetfriends.followers.length}</p> ) :
+                      ( <p>0</p> )
+                  }
+                <p className='follow-color'>{ t("followers")}</p>
               </div>
             </div>
           </div>
 
           <div className="posts">
-            <h3>Tweets</h3>
+            <h3>{ t("tweets")}</h3>
           </div>
 
           <div

@@ -7,6 +7,7 @@
 body {
     background-color: white;
     color:black;
+    /* padding: 10px; */
 }
 
 .login-container {
@@ -15,24 +16,38 @@ body {
     width:100vw;
     height: 94vh;
     padding-top:1px;
+    /* margin-left: auto;
+    margin-right: auto; */
+    padding-left: 20px;
     
 }
 
 .image-container {
-    width:59vw;
+    width:50vw;
     height:94vh;
-    object-fit:cover;
+    /* object-fit:cover; */
 }
 
 .image-container img {
     width:100%;
-    height:100%;
+    height:90%;
+    object-fit:cover;
 }
 
 .form-container {
     height:94vh;
-    width:41vw;
+    width:auto;
     color:black;
+    padding-top: 70px;
+    margin-right: 55px;
+    
+}
+
+.signup-form-heading {
+    color:black;
+    font-size:71px;
+    margin-top: -25px;
+    margin-left: 35px;
 }
 
 .Twitter-icon {
@@ -41,9 +56,13 @@ body {
     margin-top: 18px;
 }
 
+.Twitter-icon-container {
+    display: none;
+}
+
 .heading-1 {
     color:black;
-    font-size:65px;
+    font-size:71px;
     margin-top: 12px;
     margin-left: 35px;
     
@@ -51,7 +70,7 @@ body {
 
 .heading-2 {
     color:black;
-    font-size:25px;
+    font-size:29px;
     margin-top: 45px;
     margin-left: 90px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -63,11 +82,11 @@ body {
 }
 
 .or-class {
-    width:300px;
+    width:60%;
     display:flex;
     gap:0px;
-    margin-top: 13px;
-    margin-left: 70px;
+    margin-top: 2%;
+    margin-left: 10%;
     align-items: center;
     justify-content: center;
 }
@@ -107,9 +126,11 @@ body {
 }
 
 .login-class {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-left: 90px;
     font-size: 19px;
+    position:absolute;
+    bottom: 8%;
 }
 
 .form {
@@ -154,9 +175,9 @@ body {
 }
 
 .show-password {
-    position: relative;
+    position: absolute;
     /* top:0px; */
-    left:-50px;
+    right:14%;
 }
 
 .show-password:hover {
@@ -182,4 +203,162 @@ body {
 .pass-gen:hover {
     color:rgb(10, 75, 128);
 
+}
+
+/* .g-button {
+    border-radius: 30px;
+    padding-left: 15px;
+    margin-top: 40px;
+    margin-left: 80px;
+    size: larger;
+    shape: rectangular;
+    width: 280px;
+} */
+
+@media only screen and (max-width: 1200px) and (min-width:1100px) {
+    .image-container {
+        width:40vw;
+        object-fit:none;
+        margin-right: 35px;
+    }
+
+    .image-container img {
+        width:95%;
+        height:77%;
+        margin-top: 90px;
+    }
+
+    .heading-1 {
+        font-size: 69px;
+    }
+}
+
+@media only screen and (max-width: 1100px) and (min-width:1050px) {
+    .image-container {
+        width:45vw;
+        object-fit:cover;
+        margin-right: 35px;
+
+    }
+
+    .image-container img {
+        width:80%;
+        height:70%;
+        margin-top: 90px;
+    }
+
+    .heading-1 {
+        font-size: 62px;
+    }
+}
+
+@media only screen and (max-width: 1050px) and (min-width:900px) {
+    .image-container {
+        width:50vw;
+        object-fit:cover;
+        margin-right: 0px;
+
+    }
+
+    .image-container img {
+        width:75%;
+        height:60%;
+        margin-top: 90px;
+    }
+
+    .heading-1 {
+        font-size: 53px;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width:600px) {
+    .image-container {
+        display: none;
+    }
+
+    .Twitter-icon-container {
+        display: block;
+    }
+
+    .login-container {
+        margin-left: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) and (min-width:500px){
+    .image-container {
+        display: none;
+    }
+
+    .Twitter-icon-container {
+        display: block;
+    }
+
+    .heading-1 {
+        font-size: 50px;
+    }
+
+    .or-class {
+        margin-left: 20%;
+    }
+
+   
+}
+
+@media only screen and (max-width: 500px){
+    .image-container {
+        display: none;
+    }
+
+    .Twitter-icon-container {
+        display: block;
+    }
+
+    .heading-1 {
+        font-size: 45px;
+        padding-left: 15px;
+    }
+
+    .form-container {
+        /* padding-right: auto;
+        padding-left: auto; */
+        width:100vw;
+    }
+
+    .heading-2 {
+        font-size: 25px;
+    }
+
+    .or-class {
+        margin-left: 22%;
+    }
+   
+}
+
+@media only screen and (max-width: 440px){
+    .heading-1 {
+        font-size: 38px;
+        padding-left: 0px;
+    }
+    .heading-2 {
+        font-size: 22px;
+    }
+
+    .btn-container {
+        /* padding-right: auto;
+        padding-left: auto; */
+        padding-right: 6%;
+    }
+
+    .or-class {
+        margin-left: 30%;
+    }
+
+    .google-button {
+        padding-right: 10%;
+    }
+
+    .login-class {
+        padding-right: 10%;
+    }
 }

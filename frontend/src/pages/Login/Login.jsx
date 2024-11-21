@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import twitterImage from "../../assets/images/twitter.jpeg";
+import twitterImage from "../../assets/images/twitter2.jpg";
 import TwitterIcon from '@mui/icons-material/Twitter';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -20,6 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passType, setPassType] = useState('password');
+  const [msg, setMsg] = useState('');
 
   const [
     signInWithEmailAndPassword,
@@ -33,9 +34,11 @@ const Login = () => {
     console.log(user);
   }
 
-  if (error) {
-    console.log(error);
-  }
+  // if (error) {
+  //   console.log(error);
+  //   setMsg("Invalid Username or Password");
+
+  // }
 
   if (loading) {
     console.log('loading....');
@@ -53,15 +56,29 @@ const Login = () => {
     e.preventDefault();
     console.log(email);
     console.log(password);
-    signInWithEmailAndPassword(email, password);
-    console.log(user)
+
+    try {
+      signInWithEmailAndPassword(email, password);
+      console.log(user)
+
+      if (error) {
+        console.log(error);
+        setMsg("Invalid Username or Password");
     
-    fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
-         .then(res => res.json())
-         .then(data => {
-           console.log(data)
-            profile.setProfile(data[0]);
-          })
+      }
+    
+      fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          profile.setProfile(data[0]);
+        })
+      
+      
+    }
+
+    catch(err) {
+    }
     // profile.setProfile(res.data[0]);
   }
 
@@ -74,25 +91,27 @@ const Login = () => {
         <img src={twitterImage} alt="Twitter-image"/>
       </div>
       <div className="form-container">
-        <TwitterIcon className='Twitter-icon'
-                  style={{ fontSize:'37px'}}/>
+        <TwitterIcon className='Twitter-icon-container'
+                  style={{ fontSize:'37px',color:'rgb(6, 166, 230)'}}/>
         <h1 className="heading-1">Happening now</h1>
         <h1 className="heading-2">Log in to Twitter</h1>
 
-        <form className='form' onSubmit={handleSubmit}>
+          <form className='form' onSubmit={handleSubmit}>
+            
+          <p style={{ color: 'red',marginLeft:'15px'}}>{msg}</p>
 
           <input type="email"
             className='form-option'
             placeholder='Email'
-            onChange={(e) => { setEmail(e.target.value) }}
+              onChange={(e) => { setEmail(e.target.value);setMsg("") }}
             style={{ color: 'black' }}
             required>
-          </input>
-          
+            </input>
+         
           <input type={passType}
             className='password form-option'
             placeholder='Password'
-            onChange={(e) => { setPassword(e.target.value) }}
+              onChange={(e) => { setPassword(e.target.value);setMsg("") }}
             style={{ color: 'black' }}
             required></input>
 
@@ -107,13 +126,15 @@ const Login = () => {
               }
               
             </IconButton>
-
+            <br/>
+        
             <Link
               to='/password-reset'
               className="forgot-pass-btn" >
                Forgot password?
             </Link>
-          
+       
+        
           <div className="login-btn">
             <button type='submit' className='btn'>Login</button>
           </div>

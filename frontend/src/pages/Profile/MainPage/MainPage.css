@@ -81,6 +81,7 @@
     color:black;
     /* border-color: rgb(6, 166, 230); */
     box-shadow:0px 0px 6px grey;
+    cursor: pointer;
 }
 
 .profile-info {
@@ -179,3 +180,20 @@
     box-shadow: none;
     font-size: 16px;
 }
+
+.followers-container {
+    display:flex;
+    gap:19px;
+    margin-left: 20px;
+    margin-top: 11px;
+}
+
+.following,.follow {
+    display:flex; 
+    gap:4px;
+}
+
+.follow-color {
+    color:rgb(128, 122, 122);
+}
+

@@ -2,17 +2,23 @@
 // import cors from 'cors'
 // import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
 const express = require('express');
+// const { Request, Response }=require('express')
 const app = express()
 const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+require('dotenv').config();
 // const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const port = 3000
+const port = 3304
+const { Resend } = require('resend');
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const sendMail =require("./controllers/sendMail");
+const sendInvoice = require('./controllers/sendInvoice');
 
 app.use(cors());
 app.use(express.json());
 
 
-const uri = "mongodb+srv://twitter_admin:4PijnWRxRX7kCMMM@cluster0.ooqtopn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = `mongodb+srv://${process.env.db_user}:${process.env.db_pass}@cluster0.ooqtopn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -23,6 +29,8 @@ const client = new MongoClient(uri, {
   }
 });
 
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -30,6 +38,45 @@ async function run() {
     const postCollections = client.db("database").collection('posts');
     const userCollections = client.db("database").collection('users');
     const friendCollections = client.db("database").collection('friends');
+
+
+    app.get('/sendemail', async (req, res) => {
+      const { otp, email } = req.query
+      await sendMail(otp,email);
+      res.send("Mail sent")
+    })
+
+    app.post("/create-checkout-session", async (req, res) => {
+      const plan = req.body;
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items:  [
+          {
+            price_data: {
+              currency: 'inr',
+              product_data: {
+                name: plan.plan, 
+                description: 'Access to premium features.', 
+              },
+              unit_amount: plan.amount*100, 
+              recurring: {
+                interval: 'month',
+              },
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'subscription',
+        success_url: 'https://twitter-twitter-clone.netlify.app//success',
+        cancel_url:'https://twitter-twitter-clone.netlify.app//cancel'
+      })
+
+      res.json({ id: session.id })
+
+      
+    });
+
 
     app.get('/post', async (req,res) => {
       const post = await postCollections.find().toArray();

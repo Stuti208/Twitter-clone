@@ -21,3 +21,31 @@
     background-color: rgb(231, 226, 226);
     cursor:pointer;
 }
+
+@media only screen and (max-width: 1200px) and (min-width:900px) {
+
+    .sidebarOptions {
+        width:185px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 900px) and (min-width:600px) {
+    .sidebar-text{
+       display:none
+    }
+
+    .sidebarOptions {
+        width:auto;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .sidebar-text{
+       display:none
+    }
+
+    .sidebarOptions {
+        width:auto;
+    }
+}
