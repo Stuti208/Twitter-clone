@@ -170,7 +170,7 @@ const Tweet_box = () => {
   const handleTweet = async (e) => {
     e.preventDefault();
     
-    if (canPost) {
+    // if (canPost) {
     
       const userPost = {
         userid: loggedInUser._id,
@@ -209,11 +209,11 @@ const Tweet_box = () => {
       }
     
       
-    } 
+    // } 
 
-    else {
-      alert(message);
-    }
+    // else {
+    //   alert(message);
+    // }
   }
 
   return (
