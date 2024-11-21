@@ -8,7 +8,7 @@ const cors = require('cors');
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 // const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const port = 3304
+const port = process.env.PORT || 3000;
 const { Resend } = require('resend');
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 const sendMail =require("./controllers/sendMail");
