@@ -48,31 +48,36 @@ async function run() {
     app.post("/create-checkout-session", async (req, res) => {
       const plan = req.body;
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items:  [
-          {
-            price_data: {
-              currency: 'inr',
-              product_data: {
-                name: plan.plan, 
-                description: 'Access to premium features.', 
+      try {
+        const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items: [
+            {
+              price_data: {
+                currency: 'inr',
+                product_data: {
+                  name: plan.plan,
+                  description: 'Access to premium features.',
+                },
+                unit_amount: plan.amount * 100,
+                recurring: {
+                  interval: 'month',
+                },
               },
-              unit_amount: plan.amount*100, 
-              recurring: {
-                interval: 'month',
-              },
+              quantity: 1,
             },
-            quantity: 1,
-          },
-        ],
-        mode: 'subscription',
-        success_url: 'https://twitter-twitter-clone.netlify.app//success',
-        cancel_url:'https://twitter-twitter-clone.netlify.app//cancel'
-      })
+          ],
+          mode: 'subscription',
+          success_url: 'https://twitter-twitter-clone.netlify.app//success',
+          cancel_url: 'https://twitter-twitter-clone.netlify.app//cancel'
+        })
 
-      res.json({ id: session.id })
-
+        res.json({ id: session.id })
+      }
+      catch (error) {
+        console.error('Error creating checkout session:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
       
     });
 
