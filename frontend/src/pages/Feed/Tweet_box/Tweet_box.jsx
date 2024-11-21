@@ -53,7 +53,8 @@ const Tweet_box = () => {
         .then(res => res.json())
         .then(data => {
           console.log(data[0]);
-          setFriendsCount(data[0].following?data[0].following.length:0);
+          setFriendsCount(data[0].following ? data[0].following.length : 0);
+          console.log(friendsCount);
         })
     
       setPostCount(0)

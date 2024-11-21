@@ -207,17 +207,19 @@ const Settings = () => {
 
   const makePayment = async () => {
     
-    const now = new Date();
-    const istTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-    const currentHour = istTime.getHours();
-    const currentMinutes = istTime.getMinutes();
+    // const now = new Date();
+    // const istTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+    // const currentHour = istTime.getHours();
+    // const currentMinutes = istTime.getMinutes();
 
-    if (currentHour !== 10 || (currentHour === 10 && currentMinutes > 59)) {
-      alert("Payments are allowed only between 10:00 AM and 11:00 AM IST.");
-      return;
-    }
+    // if (currentHour !== 10 || (currentHour === 10 && currentMinutes > 59)) {
+    //   alert("Payments are allowed only between 10:00 AM and 11:00 AM IST.");
+    //   return;
+    // }
 
     try {
+
+      console.log("hello")
 
       const stripe = await loadStripe('pk_test_51QGNy7J40uHuls0p4J3FaoFJGDDpaH35lVU0btJnj4Vcn37aJq5w53ZEXY2lpGoBNRMYDDShbrRcjnz6rxQ0sRfF00tbJr9C0x');
       const body = {
@@ -365,7 +367,10 @@ const Settings = () => {
            
 
             <div style={ {marginTop:'20px',marginBottom:'20px'}} className="forgetPass-detail">
-                 Enter your verification code
+              {language === 'fr'?
+                "Enter your verification code sent to your registered email address" :
+                "Enter your verification code"
+               }            
             </div>
             
             <p style={{ color: "red",margin:"10px" }}>{msg2}</p>

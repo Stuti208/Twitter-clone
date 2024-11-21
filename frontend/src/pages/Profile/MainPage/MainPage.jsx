@@ -25,6 +25,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   const [userPosts, setUserPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
   const [coverImage, setCoverImage] = useState();
+  const [profileImage, setProfileImage] = useState();
   const [userData, setUserData] = useState();
   const [friends, setFriends] = useState();
   const [targetfriends, setTargetFriends] = useState();
@@ -63,7 +64,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
                 setLoggedInUser(data[0]);
           })
     }
-  }, [coverImage,value.profileImage]);
+  }, [coverImage,profileImage]);
 
 
   useEffect(() => {
@@ -180,6 +181,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
             .then(res => console.log(res))
         
           value.setProfileImage(url);
+          setProfileImage(url);
 
           // postdata update
           axios.patch(`https://twitter-clone-0b2e.onrender.com/postUpdates/${loggedInUser._id}`, userProfileImage)
