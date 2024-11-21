@@ -59,14 +59,14 @@ const LanguageSelector = ({setOpen,language,setLanguage,setOpen2,setType,otp,set
     else {
       setType('phone');
       setOpen(true);
-      // i18n.changeLanguage(lang_code);
+      
       
     }
 
    
   
     // // setOpen(true);
-    i18n.changeLanguage(lang_code);
+    // i18n.changeLanguage(lang_code);
 
     // i18n.changeLanguage(lang);
   }

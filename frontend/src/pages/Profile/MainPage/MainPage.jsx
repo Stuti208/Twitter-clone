@@ -15,6 +15,7 @@ import { profileImageContext,loggedInUserContext ,postStatusContext, bookmarkSta
 import EditProfile from '../EditProfile/EditProfile';
 import Form from 'react-bootstrap/Form';
 import { useTranslation } from 'react-i18next'
+import { CgSpinner } from 'react-icons/cg';
 
 // import axios from 'axios'
 
@@ -24,11 +25,12 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
   const { t } = useTranslation();
   const [userPosts, setUserPosts] = useState([]);
   // const [postStatus, setPostStatus] = useState(false);
-  const [coverImage, setCoverImage] = useState();
-  const [profileImage, setProfileImage] = useState();
+  const [coverImage, setCoverImage] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [userData, setUserData] = useState();
   const [friends, setFriends] = useState();
   const [targetfriends, setTargetFriends] = useState();
+  const [loading, setLoading] = useState(false);
   
 
   // const [notificationsEnabled, setNotificationsEnabled] = useState(
@@ -207,7 +209,7 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
       //   followStatus.setFollow('false')
       // else
       //   followStatus.setFollow('true')
-
+      setLoading(true);
       const email = user[0].email;
 
       await fetch(`https://twitter-clone-0b2e.onrender.com/loggedInUser?email=${email}`)
@@ -287,7 +289,8 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
           .then(res => console.log(res))
         
-          followStatus.setFollow('true')
+        followStatus.setFollow('true')
+        setLoading(false);
       }
 
       else {
@@ -321,7 +324,8 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
         axios.patch(`https://twitter-clone-0b2e.onrender.com/friendUpdates/${loggedInUser._id}`, user2Profile)
           .then(res => console.log(res))
         
-          followStatus.setFollow('false')
+        followStatus.setFollow('false')
+        setLoading(false);
        
       }
 
@@ -400,10 +404,13 @@ const MainPage = ({loggedInUser,setLoggedInUser}) => {
 
             {user && user[0].email === loggedInUser.email ?
               <EditProfile loggedInUser={loggedInUser} /> :
-              <input type='button'
-                value={followStatus.follow == 'false' ?  t("follow") :  t("following")}
-                className={followStatus.follow == 'false' ? `editProfile-btn fbtn` : `editProfile-btn`}
-                onClick={handleFollow}></input>
+              <div>
+                  {loading && <CgSpinner size={20} className="animate-spin" style={{ marginLeft: '87%' }} />}
+                <input type='button'
+                    value= {followStatus.follow == 'false' ?  t("follow") :  t("following")}
+                    className={followStatus.follow == 'false' ? `editProfile-btn fbtn` : `editProfile-btn`}
+                    onClick={handleFollow}/>
+              </div>
             }
 
             <div className="profile-image">

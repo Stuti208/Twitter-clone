@@ -85,7 +85,7 @@ const Tweet_box = () => {
             setCanPost(true);
         } else {
             setCanPost(false);
-            setMessage('You can only post once between 10:00 AM to 10:30 AM IST.');
+            setMessage('You can only post once between 10:00 AM to 10:30 AM IST, Follow others to unlock your ability to post!');
         }
     }
    
@@ -94,7 +94,7 @@ const Tweet_box = () => {
             setCanPost(true);
         } else {
             setCanPost(false);
-            setMessage('You have reached your post limit of 2 posts for today.');
+            setMessage('You have reached your post limit of 2 posts for today, Follow more people!');
         }
     }
    
