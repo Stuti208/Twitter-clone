@@ -246,8 +246,8 @@ const Settings = () => {
       </div>
 
       <div className='subscription-container'>
-        <h5>Unlock exclusive perks and premium features—Subscribe now for the ultimate experience!</h5>
-        <input type='button' className='payment-btn' value="Subscription" onClick={()=>setOpenSub(true)}></input>
+        <h5>{ t("subscribe")}</h5>
+        <input type='button' className='payment-btn' value={ t("subscription")} onClick={()=>setOpenSub(true)}></input>
       </div>
 
       <div className="language-setting" >
@@ -287,7 +287,7 @@ const Settings = () => {
            
 
             <div style={{marginBottom:"15px"}} className="forgetPass-detail">
-                 Please enter your phone number to receive a <br/> verification code.
+                 Please enter your phone number to receive a verification code.
               </div>
 
               {/* {requestError && <p style={{color:'red',marginTop:'20px'}}>{requestError}</p>} */}
@@ -344,7 +344,7 @@ const Settings = () => {
             {/* <button className='editpage-savebtn' onClick={handleSave}> Save</button> */}
           </div>
 
-          <div className='verification-box'>
+          <div className='verification-box subscription-box module'>
               
            
 
@@ -403,7 +403,7 @@ const Settings = () => {
             {/* <button className='editpage-savebtn' onClick={handleSave}> Save</button> */}
           </div>
 
-          <div className='verification-box'>
+          <div className='verification-box' subscription-box module>
               
            
 

@@ -19,29 +19,6 @@ const EditProfile = () => {
 
   const { t } = useTranslation();
 
-  
-  const style = {
-    position: 'absolute',
-    top: '70px',
-    left: '360px',
-    width:'520px',
-    height: '490px',
-    backgroundColor:'white',
-    borderRadius: '25px',  
-    boxShadow:'0px 0px 10px grey',
-  }
-
-  const style1 = {
-    position: 'absolute',
-    top: '170px',
-    left: '360px',
-    width:'520px',
-    height: '300px',
-    backgroundColor:'white',
-    borderRadius: '25px',  
-    boxShadow:'0px 0px 10px grey',
-  }
-
   // const user = useAuthState(auth);
   // const [loggedInUser, setLoggedInUser] = useState({});
   
@@ -190,7 +167,7 @@ const EditProfile = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style}>
+        <Box className='edit-modal'>
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}
@@ -240,7 +217,7 @@ const EditProfile = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
 
-        <Box sx={style1}>
+        <Box className='avatar-modal'>
           <div className="editpage-header">
               <IconButton 
                 style={{position:'absolute', top:'4px', left:'2px',  zIndex: '1'}}

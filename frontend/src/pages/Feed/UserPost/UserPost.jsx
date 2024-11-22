@@ -242,7 +242,7 @@ const UserPost = ({post,setPosts,videos}) => {
                   src={post.video}
                   ref={videoRef}
                   controls
-                  style={{ borderRadius: '20px',width:'97%' }} />
+                  style={{ borderRadius: '20px',width:'97%',maxHeight:'300px' }} />
               </div>
           }
         </div>

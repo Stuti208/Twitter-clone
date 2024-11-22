@@ -68,8 +68,8 @@ async function run() {
             },
           ],
           mode: 'subscription',
-          success_url: 'https://twitter-twitter-clone.netlify.app//success',
-          cancel_url: 'https://twitter-twitter-clone.netlify.app//cancel'
+          success_url: 'https://twitter-twitter-clone.netlify.app/success',
+          cancel_url: 'https://twitter-twitter-clone.netlify.app/cancel'
         })
 
         res.json({ id: session.id })

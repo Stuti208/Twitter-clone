@@ -32,6 +32,16 @@ const LoginHomePage = () => {
       userData
     );
     console.log(data);
+
+    const friendsData = {
+      userid: data[0]._id,
+      email: email,
+      followers: [],
+      following:[],
+  }
+
+  const { r } =await axios.post('https://twitter-clone-0b2e.onrender.com/friendsdata', friendsData)
+  console.log(r)
   };
 
   if (googleUser) {

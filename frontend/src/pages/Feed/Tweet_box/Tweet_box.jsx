@@ -250,7 +250,7 @@ const Tweet_box = () => {
           {         
             videoURL && 
             <div style={{marginLeft:'54px',marginTop:'7px'}}>
-               <video src={ videoURL} controls style={{ borderRadius: '20px',width:'95%',marginLeft:'45x',marginTop:'7px' }} />
+               <video src={ videoURL} controls style={{ borderRadius: '20px',width:'95%',marginLeft:'45x',marginTop:'7px',maxHeight:'280px' }} />
             </div>
           }
           
