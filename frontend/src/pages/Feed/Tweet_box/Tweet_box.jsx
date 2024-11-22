@@ -68,9 +68,9 @@ const Tweet_box = () => {
     const currentTime = currentDate.getTime();
 
     const startPostingTime = new Date();
-    startPostingTime.setHours(10, 0, 0, 0); // 10:00 AM IST
+    startPostingTime.setHours(10, 0, 0, 0); 
     const endPostingTime = new Date();
-    endPostingTime.setHours(10, 30, 0, 0); // 10:30 AM IST
+    endPostingTime.setHours(10, 30, 0, 0); 
 
     console.log("Current Time:", currentDate);
     console.log("Start Posting Time:", startPostingTime);
@@ -170,7 +170,7 @@ const Tweet_box = () => {
   const handleTweet = async (e) => {
     e.preventDefault();
     
-    // if (canPost) {
+    if (canPost) {
     
       const userPost = {
         userid: loggedInUser._id,
@@ -209,11 +209,11 @@ const Tweet_box = () => {
       }
     
       
-    // } 
+    } 
 
-    // else {
-    //   alert(message);
-    // }
+    else {
+      alert(message);
+    }
   }
 
   return (

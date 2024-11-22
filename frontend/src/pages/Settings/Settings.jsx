@@ -189,15 +189,15 @@ const Settings = () => {
 
   const makePayment = async () => {
     
-    // const now = new Date();
-    // const istTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-    // const currentHour = istTime.getHours();
-    // const currentMinutes = istTime.getMinutes();
+    const now = new Date();
+    const istTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+    const currentHour = istTime.getHours();
+    const currentMinutes = istTime.getMinutes();
 
-    // if (currentHour !== 10 || (currentHour === 10 && currentMinutes > 59)) {
-    //   alert("Payments are allowed only between 10:00 AM and 11:00 AM IST.");
-    //   return;
-    // }
+    if (currentHour !== 10 || (currentHour === 10 && currentMinutes > 59)) {
+      alert("Payments are allowed only between 10:00 AM and 11:00 AM IST.");
+      return;
+    }
 
     try {
 

@@ -75,7 +75,7 @@ const Feed = () => {
   const tweetContainsKeywords = (tweet) => {
     if (tweet && tweet.post) {
       const lowerCaseTweet = tweet.post.toLowerCase();
-      return lowerCaseTweet.includes('cricket') && lowerCaseTweet.includes('science');
+      return (lowerCaseTweet.includes('cricket') || lowerCaseTweet.includes('Cricket')) && (lowerCaseTweet.includes('science') || lowerCaseTweet.includes('Science'));
     }
     else
       return false;
